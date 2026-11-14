@@ -1,0 +1,19 @@
+:root {
+  color-scheme: light;
+  /* Restrained GOV.UK inspired neutrals with an initiative-specific natural green. */
+  --color-ink: #0b0c0c;
+  --color-text: #303b33;
+  --color-muted: #59645c;
+  --color-canvas: #f3f2f1;
+  --color-surface: #ffffff;
+  --color-border: #d8d9d7;
+  --color-forest: #28543b;
+  --color-forest-hover: #1e432f;
+  --color-forest-soft: #e9eee9;
+  --color-focus: #ffdd00;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

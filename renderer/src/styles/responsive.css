@@ -1,0 +1,4 @@
+@media (max-width: 600px) {
+  .sidebar.expanded { width: 226px; }
+  .sidebar.expanded ~ .main-content { margin-left: 226px; }
+}

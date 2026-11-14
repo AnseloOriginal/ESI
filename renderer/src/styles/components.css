@@ -1,0 +1,23 @@
+.icon { width: 20px; height: 20px; flex: 0 0 auto; }
+.brand { display: flex; min-height: 38px; align-items: center; justify-content: center; gap: 11px; margin: 0 0 19px; color: var(--color-ink); }
+.sidebar.expanded .brand { justify-content: flex-start; }
+.brand-mark { display: grid; width: 36px; height: 36px; flex: 0 0 36px; place-items: center; color: white; background: var(--color-forest); border-radius: 50%; }
+.brand-mark .icon { width: 21px; height: 21px; }
+.brand-name { display: none; font-size: 14px; font-weight: 650; line-height: 1.25; }
+.sidebar.expanded .brand-name { display: block; }
+.sidebar-toggle { display: grid; width: 40px; height: 40px; flex: 0 0 auto; place-items: center; margin: 0 0 17px; color: var(--color-muted); background: transparent; border: 0; border-radius: 5px; }
+.sidebar.expanded .sidebar-toggle { align-self: flex-end; }
+.sidebar.expanded .sidebar-toggle .icon { transform: rotate(180deg); }
+.sidebar-toggle:hover,.nav-item:hover { color: var(--color-forest); background: var(--color-forest-soft); }
+.sidebar-toggle:focus-visible,.nav-item:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+.primary-nav { display: grid; width: 100%; gap: 5px; }
+.nav-item { display: flex; min-height: 44px; align-items: center; justify-content: center; gap: 13px; padding: 0 11px; color: var(--color-text); border-radius: 5px; font-size: 14px; font-weight: 500; }
+.sidebar.expanded .nav-item { justify-content: flex-start; }
+.nav-item .icon { width: 20px; height: 20px; }
+.nav-item span { display: none; }
+.sidebar.expanded .nav-item span { display: inline; }
+.nav-item.active { color: var(--color-forest-hover); background: var(--color-forest-soft); font-weight: 650; }
+.sidebar-bottom { display: flex; flex: 1; align-items: flex-end; justify-content: center; padding-bottom: 6px; }
+.sidebar-monogram { color: var(--color-muted); font-size: 11px; font-weight: 700; letter-spacing: .04em; }
+.sidebar.expanded .sidebar-bottom { justify-content: flex-start; padding-left: 12px; border-top: 1px solid var(--color-border); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
