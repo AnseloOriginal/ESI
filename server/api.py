@@ -23,7 +23,7 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from cities import CITIES
+from cities import CITIES, POPULATION_SOURCE
 from feeders import ALL_FEEDERS
 from pipeline import Pipeline
 from settings import BASE_DIR, OUTPUT_DIR
@@ -67,6 +67,9 @@ class CitySummary(BaseModel):
     lat: float | None = None
     lon: float | None = None
     bbox: list[float] | None = None          # [west, south, east, north] used for the data download
+    population: int | None = None
+    population_year: int | None = None
+    population_source: str | None = None
     n_indicators: int
     status_counts: dict[str, int]
 
@@ -173,6 +176,9 @@ class Store:
             lat=info.get("lat"),
             lon=info.get("lon"),
             bbox=info.get("bbox"),
+            population=info.get("population"),
+            population_year=info.get("population_year"),
+            population_source=POPULATION_SOURCE if info.get("population") is not None else None,
             n_indicators=int(len(rows)),
             status_counts=counts,
         )

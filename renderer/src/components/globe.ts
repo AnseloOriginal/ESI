@@ -16,7 +16,7 @@ export function createGlobe(host: HTMLElement, markers: GlobeMarker[], onSelect:
   const canvas = document.createElement('canvas');
   canvas.className = 'globe-canvas';
   canvas.setAttribute('role', 'img');
-  canvas.setAttribute('aria-label', 'Interactive globe showing monitored cities. A list of the same cities follows.');
+  canvas.setAttribute('aria-label', 'Interactive globe showing monitored cities. Select a city marker to open its population and trend details.');
   const tip = document.createElement('div');
   tip.className = 'globe-tip';
   tip.hidden = true;
@@ -27,7 +27,6 @@ export function createGlobe(host: HTMLElement, markers: GlobeMarker[], onSelect:
   const projection = geoOrthographic().clipAngle(90).precision(0.5);
   const path = geoPath(projection, ctx);
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   let w = 0, h = 0;
   let lon = 40, lat = 18;
   let target: { lon: number; lat: number } | null = null;
@@ -48,17 +47,11 @@ export function createGlobe(host: HTMLElement, markers: GlobeMarker[], onSelect:
   ro.observe(host);
   resize();
 
-  function draw(time: number) {
+  function draw() {
     projection.rotate([-lon, -lat]);
     ctx!.clearRect(0, 0, w, h);
     const r = projection.scale();
     const cx = w / 2, cy = h / 2;
-
-    const glow = ctx!.createRadialGradient(cx, cy, r * 0.98, cx, cy, r * 1.14);
-    glow.addColorStop(0, 'rgba(163,184,137,.25)');
-    glow.addColorStop(1, 'rgba(163,184,137,0)');
-    ctx!.fillStyle = glow;
-    ctx!.beginPath(); ctx!.arc(cx, cy, r * 1.14, 0, Math.PI * 2); ctx!.fill();
 
     ctx!.beginPath(); path({ type: 'Sphere' });
     const ocean = ctx!.createRadialGradient(cx - r * 0.28, cy - r * 0.34, r * 0.04, cx, cy, r * 1.05);
@@ -72,17 +65,12 @@ export function createGlobe(host: HTMLElement, markers: GlobeMarker[], onSelect:
     ctx!.beginPath(); path({ type: 'Sphere' }); ctx!.strokeStyle = 'rgba(225,238,233,.3)'; ctx!.lineWidth = 1; ctx!.stroke();
 
     visible = [];
-    markers.forEach((m, i) => {
+    markers.forEach((m) => {
       if (geoDistance([m.lon, m.lat], [lon, lat]) > Math.PI / 2 - 0.04) return;
       const p = projection([m.lon, m.lat]);
       if (!p) return;
       visible.push({ m, x: p[0], y: p[1] });
       const active = m.id === selected || m.id === hovered;
-      if (!reduced) {
-        const k = (time / 1800 + i * 0.17) % 1;
-        ctx!.beginPath(); ctx!.arc(p[0], p[1], 5 + k * 11, 0, Math.PI * 2);
-        ctx!.strokeStyle = m.color; ctx!.globalAlpha = (1 - k) * 0.55; ctx!.lineWidth = 1.5; ctx!.stroke(); ctx!.globalAlpha = 1;
-      }
       ctx!.beginPath(); ctx!.arc(p[0], p[1], active ? 8 : 5.5, 0, Math.PI * 2);
       ctx!.fillStyle = m.color; ctx!.fill();
       ctx!.lineWidth = active ? 2.5 : 1.5; ctx!.strokeStyle = '#fff'; ctx!.stroke();
@@ -102,7 +90,7 @@ export function createGlobe(host: HTMLElement, markers: GlobeMarker[], onSelect:
       lon += dt * 0.006;
     }
     lon = ((lon + 540) % 360) - 180;
-    draw(t);
+    draw();
     raf = requestAnimationFrame(frame);
   };
   raf = requestAnimationFrame(frame);

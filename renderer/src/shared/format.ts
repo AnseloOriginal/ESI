@@ -28,6 +28,11 @@ export function signed(n: number | null | undefined, digits = 2): string {
 export const formatPValue = (p: number | null | undefined): string =>
   p == null ? '—' : p < 0.001 ? '< 0.001' : p.toFixed(3);
 
+export function formatPopulation(population?: number | null): string {
+  if (population == null || !Number.isFinite(population)) return 'Population estimate unavailable';
+  return new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }).format(population);
+}
+
 export function formatDate(iso?: string | null): string {
   if (!iso) return 'unknown';
   const d = new Date(iso);

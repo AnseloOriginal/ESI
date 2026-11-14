@@ -12,7 +12,7 @@
   --color-forest-soft: #edf1e9;
   --color-leaf: #4f7956;
   --color-water: #4d799a;
-  --color-rose: #b64f61;
+  --color-rose: #c1354c;
   --color-sky: #5c91ad;
   --color-slate: #777f7b;
   --color-mist: #aab5b5;
@@ -24,8 +24,8 @@
   --status-insufficient: var(--color-mist);
   --pressure-none: #56a07a;
   --pressure-low: var(--color-sky);
-  --pressure-medium: #c9787b;
-  --pressure-high: #af4b64;
+  --pressure-medium: #df7a82;
+  --pressure-high: #c1354c;
   --pressure-insufficient: #788d9a;
   font-family: "Segoe UI", Arial, sans-serif;
   font-synthesis: none;

@@ -1,6 +1,6 @@
 import { api } from '../api/client';
 import { lineChart } from '../components/charts';
-import { SIGNIFICANT, STATUS_META, cityHash, esc, formatDate, formatPValue, signed, statusBadge, unitLabel } from '../shared/format';
+import { SIGNIFICANT, STATUS_META, cityHash, esc, formatDate, formatPValue, formatPopulation, signed, statusBadge, unitLabel } from '../shared/format';
 import type { Mount } from '../router';
 import type { Trend } from '../api/client';
 
@@ -31,8 +31,9 @@ export async function cityPage(params: string[]): Promise<Mount> {
     root.innerHTML = `
       <div class="page-content">
         <header class="page-header city-head">
-          <div>
+          <div class="city-title-block">
             <h1>${esc(city.name)}</h1>
+            <p class="city-population"><span>Urban population</span><strong>${city.population == null ? 'Unavailable' : formatPopulation(city.population)}</strong><small>UN estimate · ${city.population_year ?? 'year unavailable'}</small></p>
             <p class="meta">${[city.country, bbox ? `Study box ${bbox}` : null, `Data last updated ${formatDate(updated)}`].filter(Boolean).map(esc).join('. ')}.</p>
           </div>
           <div class="field">

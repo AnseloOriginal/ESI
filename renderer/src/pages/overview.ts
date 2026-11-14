@@ -1,6 +1,6 @@
 import { api, type Trend } from '../api/client';
 import { createGlobe, type GlobeMarker } from '../components/globe';
-import { STATUS_META, cityHash, esc, formatDate, signed, statusBadge, unitLabel } from '../shared/format';
+import { cityHash, esc, formatDate, formatPopulation, signed, statusBadge, unitLabel } from '../shared/format';
 import { PRESSURE_LEGEND, pressureOf } from '../shared/pressure';
 import { icon } from '../shared/icon';
 import type { Mount } from '../router';
@@ -31,7 +31,7 @@ export async function overviewPage(): Promise<Mount> {
       lat: city.lat as number,
       lon: city.lon as number,
       color: pressure.color,
-      detail: pressure.tested ? `${pressure.worsening} of ${pressure.tested} indicators worsening` : 'Not enough data to assess',
+      detail: `${city.population != null ? `${formatPopulation(city.population)} residents · ${city.population_year ?? 'Year unavailable'} UN urban estimate` : 'Population estimate unavailable'}${pressure.tested ? ` · ${pressure.worsening}/${pressure.tested} indicators worsening` : ''}`,
     }));
 
   const panelContent = (name: string): string => {

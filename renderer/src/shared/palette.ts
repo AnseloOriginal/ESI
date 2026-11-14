@@ -1,5 +1,5 @@
 export const STATUS_COLORS = {
-  worsening: '#b64f61',
+  worsening: '#c1354c',
   improving: '#4f7956',
   wetter: '#4d799a',
   drier: '#4d799a',
@@ -10,7 +10,7 @@ export const STATUS_COLORS = {
 export const PRESSURE_COLORS = {
   none: '#56a07a',
   low: '#5c91ad',
-  medium: '#c9787b',
-  high: '#af4b64',
+  medium: '#df7a82',
+  high: '#c1354c',
   insufficient: '#788d9a',
 } as const;

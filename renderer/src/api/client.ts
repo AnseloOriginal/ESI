@@ -2,7 +2,7 @@ export type Status = 'worsening' | 'improving' | 'wetter' | 'drier' | 'no_clear_
 export type WorseDirection = 'up' | 'down' | 'both';
 
 export interface Health { status: string; n_results: number; n_cities: number; n_errors: number; generated_at?: string | null; unknown_cities: string[] }
-export interface CitySummary { name: string; country?: string | null; lat?: number | null; lon?: number | null; bbox?: number[] | null; n_indicators: number; status_counts: Record<string, number> }
+export interface CitySummary { name: string; country?: string | null; lat?: number | null; lon?: number | null; bbox?: number[] | null; population?: number | null; population_year?: number | null; population_source?: string | null; n_indicators: number; status_counts: Record<string, number> }
 export interface Trend {
   city: string; indicator: string; label: string; unit: string; worse_direction: WorseDirection; source: string;
   status: Status; direction: 'increasing' | 'decreasing' | 'none';
