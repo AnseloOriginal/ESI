@@ -55,15 +55,15 @@ export function createGlobe(host: HTMLElement, markers: GlobeMarker[], onSelect:
     const cx = w / 2, cy = h / 2;
 
     const glow = ctx!.createRadialGradient(cx, cy, r * 0.98, cx, cy, r * 1.14);
-    glow.addColorStop(0, 'rgba(130,205,165,.35)');
-    glow.addColorStop(1, 'rgba(130,205,165,0)');
+    glow.addColorStop(0, 'rgba(163,184,137,.25)');
+    glow.addColorStop(1, 'rgba(163,184,137,0)');
     ctx!.fillStyle = glow;
     ctx!.beginPath(); ctx!.arc(cx, cy, r * 1.14, 0, Math.PI * 2); ctx!.fill();
 
-    ctx!.beginPath(); path({ type: 'Sphere' }); ctx!.fillStyle = '#14303a'; ctx!.fill();
+    ctx!.beginPath(); path({ type: 'Sphere' }); ctx!.fillStyle = '#273a31'; ctx!.fill();
     ctx!.beginPath(); path(graticule); ctx!.strokeStyle = 'rgba(255,255,255,.07)'; ctx!.lineWidth = 0.6; ctx!.stroke();
-    ctx!.beginPath(); path(land); ctx!.fillStyle = '#3a6650'; ctx!.fill();
-    ctx!.beginPath(); path(borders); ctx!.strokeStyle = 'rgba(11,24,20,.75)'; ctx!.lineWidth = 0.5; ctx!.stroke();
+    ctx!.beginPath(); path(land); ctx!.fillStyle = '#61765c'; ctx!.fill();
+    ctx!.beginPath(); path(borders); ctx!.strokeStyle = 'rgba(30,43,33,.7)'; ctx!.lineWidth = 0.5; ctx!.stroke();
     ctx!.beginPath(); path({ type: 'Sphere' }); ctx!.strokeStyle = 'rgba(255,255,255,.2)'; ctx!.lineWidth = 1; ctx!.stroke();
 
     visible = [];

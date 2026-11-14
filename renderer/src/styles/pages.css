@@ -1,15 +1,15 @@
 #main:focus { outline: none; }
 a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; }
-h1 { margin: 0 0 10px; color: var(--color-ink); font-size: 32px; line-height: 1.15; letter-spacing: -.01em; }
-h2 { margin: 0 0 12px; color: var(--color-ink); font-size: 19px; line-height: 1.25; }
+h1 { margin: 0 0 10px; color: var(--color-ink); font-family: Georgia, "Times New Roman", serif; font-size: clamp(32px, 3vw, 39px); font-weight: 500; line-height: 1.14; letter-spacing: -.025em; }
+h2 { margin: 0 0 12px; color: var(--color-ink); font-family: Georgia, "Times New Roman", serif; font-size: 21px; font-weight: 500; line-height: 1.25; }
 p { line-height: 1.55; }
 .lede { max-width: 66ch; margin: 0 0 10px; color: var(--color-text); font-size: 17px; }
 .meta, .muted { color: var(--color-muted); font-size: 14px; }
 .meta { max-width: 78ch; margin: 0; }
 .page-header { margin-bottom: 26px; }
 .stack { display: grid; gap: 18px; }
-.card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 6px; padding: 22px; min-width: 0; }
-.badge { display: inline-block; padding: 2px 9px; color: var(--badge); background: color-mix(in srgb, var(--badge) 11%, white); border: 1px solid color-mix(in srgb, var(--badge) 35%, white); border-radius: 999px; font-size: 12px; font-weight: 650; white-space: nowrap; }
+.card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 10px; padding: 22px; min-width: 0; }
+.badge { display: inline-block; padding: 3px 8px; color: var(--badge); background: color-mix(in srgb, var(--badge) 9%, white); border: 1px solid color-mix(in srgb, var(--badge) 27%, white); border-radius: 4px; font-size: 12px; font-weight: 650; white-space: nowrap; }
 .dot { display: inline-block; width: 11px; height: 11px; flex: 0 0 auto; border-radius: 50%; }
 .link-button { display: inline-flex; align-items: center; padding: 9px 15px; color: #fff; background: var(--color-forest); border: 0; border-radius: 5px; font-size: 14px; font-weight: 600; }
 .link-button:hover { background: var(--color-forest-hover); }
@@ -27,16 +27,16 @@ p { line-height: 1.55; }
 .stat-note { margin-top: 2px; color: var(--color-muted); font-size: 13px; }
 
 .globe-card { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(300px, 1fr); gap: 0; margin-bottom: 18px; padding: 0; overflow: hidden; }
-.globe-wrap { position: relative; background: radial-gradient(circle at 50% 42%, #17372e, #0b1814 72%); }
+.globe-wrap { position: relative; background: radial-gradient(circle at 50% 42%, #34493a, #202e25 72%); }
 .globe-stage { position: relative; width: 100%; aspect-ratio: 1; max-height: 640px; margin: 0 auto; }
 .globe-canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; touch-action: pan-y; }
 .globe-canvas.dragging { cursor: grabbing; }
 .globe-tip { position: absolute; z-index: 2; display: grid; gap: 1px; padding: 6px 10px; color: #fff; background: #0b0c0c; border-radius: 4px; font-size: 12px; white-space: nowrap; pointer-events: none; transform: translate(-50%, -150%); }
 .globe-tip[hidden] { display: none; }
-.globe-legend { position: absolute; left: 14px; bottom: 12px; display: grid; gap: 3px; color: #d9e5dd; font-size: 12px; }
+.globe-legend { position: absolute; left: 14px; bottom: 12px; display: grid; gap: 3px; color: #f0eee5; font-size: 12px; }
 .globe-legend span { display: flex; align-items: center; gap: 7px; }
 .globe-legend i, .ind-counts i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; }
-.globe-legend em { margin-top: 4px; color: #9db3a5; font-style: normal; }
+.globe-legend em { margin-top: 4px; color: #c4cbbb; font-style: normal; }
 .globe-side { display: flex; flex-direction: column; gap: 16px; min-width: 0; padding: 22px; }
 .city-panel { padding-bottom: 16px; border-bottom: 1px solid var(--color-border); }
 .city-panel h2 .muted { font-size: 14px; font-weight: 400; margin-left: 6px; }
@@ -65,7 +65,7 @@ p { line-height: 1.55; }
 .rank-bar { position: absolute; top: 2px; bottom: 2px; border-radius: 2px; }
 .rank-row.faded .rank-bar { opacity: .35; }
 .rank-value { text-align: right; font-variant-numeric: tabular-nums; }
-.footnote { max-width: 80ch; color: var(--color-muted); font-size: 13px; }
+.footnote { max-width: 80ch; color: var(--color-muted); font-size: 14px; line-height: 1.6; }
 
 .city-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; }
 .chart-key { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 14px; color: var(--color-muted); font-size: 13px; }

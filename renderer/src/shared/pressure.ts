@@ -3,11 +3,11 @@ import type { Trend } from '../api/client';
 export interface Pressure { worsening: number; tested: number; ratio: number | null; color: string }
 
 export const PRESSURE_LEGEND = [
-  { color: '#6fae82', label: 'No indicator worsening' },
-  { color: '#e0b02c', label: 'Up to a third worsening' },
-  { color: '#e0782c', label: 'Up to two thirds worsening' },
-  { color: '#d4351c', label: 'More than two thirds worsening' },
-  { color: '#8a948d', label: 'Not enough data' },
+  { color: '#789171', label: 'No indicator worsening' },
+  { color: '#bb9a52', label: 'Up to a third worsening' },
+  { color: '#b9794c', label: 'Up to two thirds worsening' },
+  { color: '#a6533b', label: 'More than two thirds worsening' },
+  { color: '#817f73', label: 'Not enough data' },
 ];
 
 /** Share of tested indicators (excluding neutral rainfall) with a significant worsening trend. */

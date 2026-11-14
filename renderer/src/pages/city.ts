@@ -10,7 +10,7 @@ function sentence(t: Trend): string {
   const unit = unitLabel(t.unit);
   const span = t.start_year != null && t.end_year != null ? `${t.start_year} to ${t.end_year}` : 'the available record';
   if (t.status === 'insufficient_data') return 'Not enough complete data to test a trend.';
-  if (t.status === 'no_clear_trend') return `No statistically clear trend over ${span}. The change is within natural variability.`;
+  if (t.status === 'no_clear_trend') return `The data does not show a clear direction over ${span}.`;
   return `${STATUS_META[t.status].label}: ${signed(t.trend_per_decade)} ${unit} per decade over ${span}.`;
 }
 
@@ -43,7 +43,7 @@ export async function cityPage(params: string[]): Promise<Mount> {
         <div class="chart-key" aria-hidden="true">
           <span><i class="key-line raw"></i>Monthly values</span>
           <span><i class="key-line avg"></i>12-month average</span>
-          <span><i class="key-line dash"></i>Fitted trend from the API slope</span>
+          <span><i class="key-line dash"></i>Long-term trend</span>
         </div>
         <div class="indicator-grid">
           ${trends.map((t) => `
@@ -56,7 +56,7 @@ export async function cityPage(params: string[]): Promise<Mount> {
                 <div><dt>Years used</dt><dd>${t.n_years ?? 0}</dd></div>
                 <div><dt>Average</dt><dd>${t.mean_value == null ? '—' : `${t.mean_value.toFixed(1)} ${esc(unitLabel(t.unit))}`}</dd></div>
               </dl>
-              <div class="chart" data-chart="${esc(t.indicator)}"><p class="muted">Loading chart</p></div>
+              <div class="chart" data-chart="${esc(t.indicator)}"><p class="muted">Preparing chart…</p></div>
               ${t.note ? `<p class="card-foot">${esc(t.note)}</p>` : ''}
               <p class="card-foot">Source: ${esc(t.source)}</p>
             </article>`).join('')}

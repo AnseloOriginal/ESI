@@ -27,7 +27,7 @@ export async function initiativePage(): Promise<Mount> {
       <div class="page-content stack">
         <header class="page-header">
           <h1>The initiative</h1>
-          <p class="lede">The Earth Sustainability Initiative asks one question: will environmental trends make parts of Earth less habitable over the long term? Built for the NASA Space Apps Challenge 2026, Earth System Trend Detective.</p>
+          <p class="lede">The Earth Sustainability Initiative explores one question: could long-term environmental change make some places harder to live in? Built for the NASA Space Apps Challenge 2026, Earth System Trend Detective.</p>
         </header>
 
         <section class="card prose">

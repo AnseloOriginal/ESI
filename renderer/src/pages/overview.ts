@@ -76,9 +76,9 @@ export async function overviewPage(): Promise<Mount> {
     root.innerHTML = `
       <div class="page-content">
         <header class="page-header">
-          <h1>Is the Earth getting harder to live on?</h1>
-          <p class="lede">We test NASA satellite and reanalysis records for statistically significant change in ${rows.length} major cities. Results show habitability pressure and are not predictions.</p>
-          <p class="meta">Precomputed trend monitor, not a live alert system. Data last updated ${esc(formatDate(health.generated_at))}. Study period ${esc(period)}.</p>
+          <h1>How are city environments changing?</h1>
+          <p class="lede">We follow long-term NASA records to see how heat, rainfall, and other environmental conditions are changing in major cities. The results show patterns, not predictions.</p>
+          <p class="meta">Records cover ${esc(period)}. Last updated ${esc(formatDate(health.generated_at))}; this is a trend monitor, not a live alert.</p>
         </header>
 
         <section class="stat-grid" aria-label="Headline numbers">
@@ -108,7 +108,7 @@ export async function overviewPage(): Promise<Mount> {
 
         <div class="two-col">
           <section class="card" aria-label="Indicator results">
-            <h2>What the tests found</h2>
+            <h2>What the data shows</h2>
             <p class="muted">How cities split by status for each indicator.</p>
             ${indicatorRows}
           </section>
