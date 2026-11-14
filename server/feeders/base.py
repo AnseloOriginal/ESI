@@ -17,6 +17,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from settings import RAW_DIR
+
 STANDARD_COLUMNS = ["date", "value", "indicator", "unit", "city", "source"]
 
 
@@ -28,7 +30,7 @@ class Feeder(ABC):
     source: str = ""               # dataset/tool, used on the citations page
     worse_direction: str = "up"    # "up" = an increase is a threat, "down" = a decrease is
 
-    def __init__(self, raw_dir: str | Path = "data/raw"):
+    def __init__(self, raw_dir: str | Path = RAW_DIR):
         self.raw_dir = Path(raw_dir)
         for attr in ("indicator", "unit", "source"):
             if not getattr(self, attr):
