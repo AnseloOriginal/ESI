@@ -1,3 +1,11 @@
+@media (max-width: 960px) {
+  .globe-card, .two-col { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .page-content { padding: 28px 18px; }
+  h1 { font-size: 26px; }
+  .rank-row { grid-template-columns: 80px 1fr 50px; }
+}
 @media (max-width: 600px) {
   .sidebar.expanded { width: 226px; }
   .sidebar.expanded ~ .main-content { margin-left: 226px; }

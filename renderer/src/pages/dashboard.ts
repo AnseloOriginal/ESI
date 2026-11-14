@@ -1,16 +1,16 @@
 import { icon } from '../shared/icon';
 
 const navigation = [
-  { label: 'Overview', icon: 'grid', active: true },
-  { label: 'City view', icon: 'map-pin', active: false },
-  { label: 'The initiative', icon: 'info', active: false },
+  { label: 'Overview', icon: 'grid', href: '#/overview', section: 'overview' },
+  { label: 'City view', icon: 'map-pin', href: '#/city', section: 'city' },
+  { label: 'The initiative', icon: 'info', href: '#/initiative', section: 'initiative' },
 ];
 
 export function renderDashboard(): string {
   return `
     <div class="app-shell">
       <aside class="sidebar" id="sidebar" aria-label="Main navigation">
-        <a class="brand" href="#overview" aria-label="Earth Sustainability Initiative">
+        <a class="brand" href="#/overview" aria-label="Earth Sustainability Initiative">
           <span class="brand-mark">${icon('globe')}</span>
           <span class="brand-name">Earth Sustainability Initiative</span>
         </a>
@@ -18,15 +18,24 @@ export function renderDashboard(): string {
           ${icon('panel')}
         </button>
         <nav class="primary-nav">
-          ${navigation.map((item) => `<a class="nav-item${item.active ? ' active' : ''}" href="#${item.label.toLowerCase().replaceAll(' ', '-')}" aria-label="${item.label}" title="${item.label}"${item.active ? ' aria-current="page"' : ''}>${icon(item.icon)}<span>${item.label}</span></a>`).join('')}
+          ${navigation.map((item) => `<a class="nav-item" data-section="${item.section}" href="${item.href}" aria-label="${item.label}" title="${item.label}">${icon(item.icon)}<span>${item.label}</span></a>`).join('')}
         </nav>
         <div class="sidebar-bottom">
           <span class="sidebar-monogram" aria-hidden="true">ESI</span>
         </div>
       </aside>
 
-      <main class="main-content" id="overview" aria-label="Overview"></main>
+      <main class="main-content" id="main" tabindex="-1"></main>
     </div>`;
+}
+
+export function setActiveNav(section: string): void {
+  document.querySelectorAll<HTMLAnchorElement>('.nav-item').forEach((a) => {
+    const active = a.dataset.section === section;
+    a.classList.toggle('active', active);
+    if (active) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
+  });
 }
 
 export function setupSidebar(): void {
