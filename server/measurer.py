@@ -143,6 +143,14 @@ class Measurer:
             **base,
         )
 
+    def annual_values(self, data: pd.DataFrame) -> pd.Series:
+        """Seasonally adjusted annual values (index = year), the series the trend test runs on.
+        Annual anomaly + the long-term mean, so values stay in the indicator's own units."""
+        s = self._to_monthly_series(data)
+        if s.empty:
+            return pd.Series(dtype=float)
+        return self._annual_anomalies(s) + float(s.groupby(s.index.month).mean().mean())
+
     # ----------------------------------------------------------------- helpers
     @staticmethod
     def _to_monthly_series(data: pd.DataFrame) -> pd.Series:

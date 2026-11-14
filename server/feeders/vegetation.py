@@ -18,6 +18,7 @@ class VegetationFeeder(Feeder):
     unit = "NDVI"
     source = "AppEEARS: MODIS Terra MOD13A3 v061, 1 km monthly NDVI (area mean per city box)"
     worse_direction = "down"
+    domain = "land"
     file_key = "ndvi"
 
     def _path(self, city: str):

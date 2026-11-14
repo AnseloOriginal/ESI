@@ -5,6 +5,7 @@ from .giovanni import GiovanniFeeder
 class _SurfaceTempFeeder(GiovanniFeeder):
     unit = "degC"
     worse_direction = "up"
+    domain = "heat"
 
     def postprocess(self, df):
         # Giovanni's default unit for this product is Kelvin; convert unless it is already Celsius

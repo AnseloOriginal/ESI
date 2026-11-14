@@ -30,6 +30,7 @@ class Feeder(ABC):
     source: str = ""               # dataset/tool, used on the citations page
     worse_direction: str = "up"    # "up" = an increase is a threat, "down" = a decrease is,
                                    # "both" = either direction is a shift, not simply good or bad
+    domain: str = ""               # hazard domain for the pressure score: "heat", "water" or "land"
     up_label: str = ""             # only for "both": status for a significant increase, e.g. "wetter"
     down_label: str = ""           # only for "both": status for a significant decrease, e.g. "drier"
 

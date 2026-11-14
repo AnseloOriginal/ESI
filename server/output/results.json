@@ -5,6 +5,7 @@
     "label":"Air temperature (2 m)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: MERRA-2 M2TMNXSLV v5.12.4 (T2M)",
     "status":"worsening",
     "direction":"increasing",
@@ -19,7 +20,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Dhaka",
@@ -27,6 +28,7 @@
     "label":"Air temperature (2 m)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: MERRA-2 M2TMNXSLV v5.12.4 (T2M)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -41,7 +43,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Guangzhou",
@@ -49,6 +51,7 @@
     "label":"Air temperature (2 m)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: MERRA-2 M2TMNXSLV v5.12.4 (T2M)",
     "status":"worsening",
     "direction":"increasing",
@@ -63,7 +66,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Jakarta",
@@ -71,6 +74,7 @@
     "label":"Air temperature (2 m)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: MERRA-2 M2TMNXSLV v5.12.4 (T2M)",
     "status":"worsening",
     "direction":"increasing",
@@ -85,7 +89,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Kolkata",
@@ -93,6 +97,7 @@
     "label":"Air temperature (2 m)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: MERRA-2 M2TMNXSLV v5.12.4 (T2M)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -107,7 +112,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Lagos",
@@ -115,6 +120,7 @@
     "label":"Air temperature (2 m)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: MERRA-2 M2TMNXSLV v5.12.4 (T2M)",
     "status":"worsening",
     "direction":"increasing",
@@ -129,7 +135,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Manila",
@@ -137,6 +143,7 @@
     "label":"Air temperature (2 m)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: MERRA-2 M2TMNXSLV v5.12.4 (T2M)",
     "status":"worsening",
     "direction":"increasing",
@@ -151,7 +158,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"New Delhi",
@@ -159,6 +166,7 @@
     "label":"Air temperature (2 m)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: MERRA-2 M2TMNXSLV v5.12.4 (T2M)",
     "status":"improving",
     "direction":"decreasing",
@@ -173,7 +181,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Seoul",
@@ -181,6 +189,7 @@
     "label":"Air temperature (2 m)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: MERRA-2 M2TMNXSLV v5.12.4 (T2M)",
     "status":"worsening",
     "direction":"increasing",
@@ -195,7 +204,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Shanghai",
@@ -203,6 +212,7 @@
     "label":"Air temperature (2 m)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: MERRA-2 M2TMNXSLV v5.12.4 (T2M)",
     "status":"worsening",
     "direction":"increasing",
@@ -217,7 +227,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Tokyo",
@@ -225,6 +235,7 @@
     "label":"Air temperature (2 m)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: MERRA-2 M2TMNXSLV v5.12.4 (T2M)",
     "status":"worsening",
     "direction":"increasing",
@@ -239,7 +250,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Cairo",
@@ -247,6 +258,7 @@
     "label":"Precipitation",
     "unit":"mm\/day",
     "worse_direction":"both",
+    "domain":"water",
     "source":"Giovanni: GPM IMERG Final Run monthly v07 (GPM_3IMERGM_07_precipitation)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -261,7 +273,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-09-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Dhaka",
@@ -269,6 +281,7 @@
     "label":"Precipitation",
     "unit":"mm\/day",
     "worse_direction":"both",
+    "domain":"water",
     "source":"Giovanni: GPM IMERG Final Run monthly v07 (GPM_3IMERGM_07_precipitation)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -283,7 +296,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-09-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Guangzhou",
@@ -291,6 +304,7 @@
     "label":"Precipitation",
     "unit":"mm\/day",
     "worse_direction":"both",
+    "domain":"water",
     "source":"Giovanni: GPM IMERG Final Run monthly v07 (GPM_3IMERGM_07_precipitation)",
     "status":"wetter",
     "direction":"increasing",
@@ -305,7 +319,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-09-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Jakarta",
@@ -313,6 +327,7 @@
     "label":"Precipitation",
     "unit":"mm\/day",
     "worse_direction":"both",
+    "domain":"water",
     "source":"Giovanni: GPM IMERG Final Run monthly v07 (GPM_3IMERGM_07_precipitation)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -327,7 +342,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-09-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Kolkata",
@@ -335,6 +350,7 @@
     "label":"Precipitation",
     "unit":"mm\/day",
     "worse_direction":"both",
+    "domain":"water",
     "source":"Giovanni: GPM IMERG Final Run monthly v07 (GPM_3IMERGM_07_precipitation)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -349,7 +365,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-09-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Lagos",
@@ -357,6 +373,7 @@
     "label":"Precipitation",
     "unit":"mm\/day",
     "worse_direction":"both",
+    "domain":"water",
     "source":"Giovanni: GPM IMERG Final Run monthly v07 (GPM_3IMERGM_07_precipitation)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -371,7 +388,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-09-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Manila",
@@ -379,6 +396,7 @@
     "label":"Precipitation",
     "unit":"mm\/day",
     "worse_direction":"both",
+    "domain":"water",
     "source":"Giovanni: GPM IMERG Final Run monthly v07 (GPM_3IMERGM_07_precipitation)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -393,7 +411,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-09-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"New Delhi",
@@ -401,6 +419,7 @@
     "label":"Precipitation",
     "unit":"mm\/day",
     "worse_direction":"both",
+    "domain":"water",
     "source":"Giovanni: GPM IMERG Final Run monthly v07 (GPM_3IMERGM_07_precipitation)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -415,7 +434,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-09-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Seoul",
@@ -423,6 +442,7 @@
     "label":"Precipitation",
     "unit":"mm\/day",
     "worse_direction":"both",
+    "domain":"water",
     "source":"Giovanni: GPM IMERG Final Run monthly v07 (GPM_3IMERGM_07_precipitation)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -437,7 +457,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-09-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Shanghai",
@@ -445,6 +465,7 @@
     "label":"Precipitation",
     "unit":"mm\/day",
     "worse_direction":"both",
+    "domain":"water",
     "source":"Giovanni: GPM IMERG Final Run monthly v07 (GPM_3IMERGM_07_precipitation)",
     "status":"wetter",
     "direction":"increasing",
@@ -459,7 +480,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-09-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Tokyo",
@@ -467,6 +488,7 @@
     "label":"Precipitation",
     "unit":"mm\/day",
     "worse_direction":"both",
+    "domain":"water",
     "source":"Giovanni: GPM IMERG Final Run monthly v07 (GPM_3IMERGM_07_precipitation)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -481,7 +503,7 @@
     "note":"",
     "data_start":"2002-01-01",
     "data_end":"2025-09-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Cairo",
@@ -489,6 +511,7 @@
     "label":"Surface skin temperature (daytime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_A (daytime\/ascending)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -503,7 +526,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Dhaka",
@@ -511,6 +534,7 @@
     "label":"Surface skin temperature (daytime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_A (daytime\/ascending)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -525,7 +549,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Guangzhou",
@@ -533,6 +557,7 @@
     "label":"Surface skin temperature (daytime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_A (daytime\/ascending)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -547,7 +572,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Jakarta",
@@ -555,6 +580,7 @@
     "label":"Surface skin temperature (daytime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_A (daytime\/ascending)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -569,7 +595,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Kolkata",
@@ -577,6 +603,7 @@
     "label":"Surface skin temperature (daytime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_A (daytime\/ascending)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -591,7 +618,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Lagos",
@@ -599,6 +626,7 @@
     "label":"Surface skin temperature (daytime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_A (daytime\/ascending)",
     "status":"worsening",
     "direction":"increasing",
@@ -613,7 +641,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Manila",
@@ -621,6 +649,7 @@
     "label":"Surface skin temperature (daytime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_A (daytime\/ascending)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -635,7 +664,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"New Delhi",
@@ -643,6 +672,7 @@
     "label":"Surface skin temperature (daytime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_A (daytime\/ascending)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -657,7 +687,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Seoul",
@@ -665,6 +695,7 @@
     "label":"Surface skin temperature (daytime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_A (daytime\/ascending)",
     "status":"worsening",
     "direction":"increasing",
@@ -679,7 +710,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Shanghai",
@@ -687,6 +718,7 @@
     "label":"Surface skin temperature (daytime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_A (daytime\/ascending)",
     "status":"worsening",
     "direction":"increasing",
@@ -701,7 +733,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Tokyo",
@@ -709,6 +741,7 @@
     "label":"Surface skin temperature (daytime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_A (daytime\/ascending)",
     "status":"worsening",
     "direction":"increasing",
@@ -723,7 +756,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Cairo",
@@ -731,6 +764,7 @@
     "label":"Surface skin temperature (nighttime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_D (nighttime\/descending)",
     "status":"worsening",
     "direction":"increasing",
@@ -745,7 +779,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Dhaka",
@@ -753,6 +787,7 @@
     "label":"Surface skin temperature (nighttime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_D (nighttime\/descending)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -767,7 +802,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Guangzhou",
@@ -775,6 +810,7 @@
     "label":"Surface skin temperature (nighttime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_D (nighttime\/descending)",
     "status":"worsening",
     "direction":"increasing",
@@ -789,7 +825,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Jakarta",
@@ -797,6 +833,7 @@
     "label":"Surface skin temperature (nighttime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_D (nighttime\/descending)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -811,7 +848,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Kolkata",
@@ -819,6 +856,7 @@
     "label":"Surface skin temperature (nighttime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_D (nighttime\/descending)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -833,7 +871,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Lagos",
@@ -841,6 +879,7 @@
     "label":"Surface skin temperature (nighttime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_D (nighttime\/descending)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -855,7 +894,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Manila",
@@ -863,6 +902,7 @@
     "label":"Surface skin temperature (nighttime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_D (nighttime\/descending)",
     "status":"no_clear_trend",
     "direction":"none",
@@ -877,7 +917,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"New Delhi",
@@ -885,6 +925,7 @@
     "label":"Surface skin temperature (nighttime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_D (nighttime\/descending)",
     "status":"worsening",
     "direction":"increasing",
@@ -899,7 +940,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Shanghai",
@@ -907,6 +948,7 @@
     "label":"Surface skin temperature (nighttime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_D (nighttime\/descending)",
     "status":"worsening",
     "direction":"increasing",
@@ -921,7 +963,7 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
   },
   {
     "city":"Tokyo",
@@ -929,6 +971,7 @@
     "label":"Surface skin temperature (nighttime)",
     "unit":"degC",
     "worse_direction":"up",
+    "domain":"heat",
     "source":"Giovanni: AIRS3STM v7.0 AIRS-only SurfSkinTemp_D (nighttime\/descending)",
     "status":"worsening",
     "direction":"increasing",
@@ -943,6 +986,259 @@
     "note":"",
     "data_start":"2002-09-01",
     "data_end":"2025-12-01",
-    "generated_at":"2026-11-14T14:06:00+00:00"
+    "generated_at":"2026-11-14T20:32:13+00:00"
+  },
+  {
+    "city":"Cairo",
+    "indicator":"ndvi",
+    "label":"Vegetation greenness (NDVI)",
+    "unit":"NDVI",
+    "worse_direction":"down",
+    "domain":"land",
+    "source":"AppEEARS: MODIS Terra MOD13A3 v061, 1 km monthly NDVI (area mean per city box)",
+    "status":"no_clear_trend",
+    "direction":"none",
+    "trend_per_decade":0.0006863281,
+    "p_value":0.4130458869,
+    "kendall_tau":0.1231884058,
+    "mean_value":0.2292199365,
+    "n_years":24,
+    "start_year":2002,
+    "end_year":2025,
+    "completeness":1.0,
+    "note":"",
+    "data_start":"2002-01-01",
+    "data_end":"2025-12-01",
+    "generated_at":"2026-11-14T20:32:13+00:00"
+  },
+  {
+    "city":"Dhaka",
+    "indicator":"ndvi",
+    "label":"Vegetation greenness (NDVI)",
+    "unit":"NDVI",
+    "worse_direction":"down",
+    "domain":"land",
+    "source":"AppEEARS: MODIS Terra MOD13A3 v061, 1 km monthly NDVI (area mean per city box)",
+    "status":"improving",
+    "direction":"increasing",
+    "trend_per_decade":0.0376188201,
+    "p_value":0.0000000421,
+    "kendall_tau":0.8043478261,
+    "mean_value":0.5475832552,
+    "n_years":24,
+    "start_year":2002,
+    "end_year":2025,
+    "completeness":1.0,
+    "note":"",
+    "data_start":"2002-01-01",
+    "data_end":"2025-12-01",
+    "generated_at":"2026-11-14T20:32:13+00:00"
+  },
+  {
+    "city":"Guangzhou",
+    "indicator":"ndvi",
+    "label":"Vegetation greenness (NDVI)",
+    "unit":"NDVI",
+    "worse_direction":"down",
+    "domain":"land",
+    "source":"AppEEARS: MODIS Terra MOD13A3 v061, 1 km monthly NDVI (area mean per city box)",
+    "status":"improving",
+    "direction":"increasing",
+    "trend_per_decade":0.0264000104,
+    "p_value":0.0000056467,
+    "kendall_tau":0.6666666667,
+    "mean_value":0.4454933399,
+    "n_years":24,
+    "start_year":2002,
+    "end_year":2025,
+    "completeness":1.0,
+    "note":"",
+    "data_start":"2002-01-01",
+    "data_end":"2025-12-01",
+    "generated_at":"2026-11-14T20:32:13+00:00"
+  },
+  {
+    "city":"Jakarta",
+    "indicator":"ndvi",
+    "label":"Vegetation greenness (NDVI)",
+    "unit":"NDVI",
+    "worse_direction":"down",
+    "domain":"land",
+    "source":"AppEEARS: MODIS Terra MOD13A3 v061, 1 km monthly NDVI (area mean per city box)",
+    "status":"no_clear_trend",
+    "direction":"none",
+    "trend_per_decade":0.0028677803,
+    "p_value":0.5351853194,
+    "kendall_tau":0.0942028986,
+    "mean_value":0.5638960833,
+    "n_years":24,
+    "start_year":2002,
+    "end_year":2025,
+    "completeness":1.0,
+    "note":"",
+    "data_start":"2002-01-01",
+    "data_end":"2025-12-01",
+    "generated_at":"2026-11-14T20:32:13+00:00"
+  },
+  {
+    "city":"Kolkata",
+    "indicator":"ndvi",
+    "label":"Vegetation greenness (NDVI)",
+    "unit":"NDVI",
+    "worse_direction":"down",
+    "domain":"land",
+    "source":"AppEEARS: MODIS Terra MOD13A3 v061, 1 km monthly NDVI (area mean per city box)",
+    "status":"improving",
+    "direction":"increasing",
+    "trend_per_decade":0.0266280127,
+    "p_value":0.0000004771,
+    "kendall_tau":0.7391304348,
+    "mean_value":0.5245031674,
+    "n_years":24,
+    "start_year":2002,
+    "end_year":2025,
+    "completeness":1.0,
+    "note":"",
+    "data_start":"2002-01-01",
+    "data_end":"2025-12-01",
+    "generated_at":"2026-11-14T20:32:13+00:00"
+  },
+  {
+    "city":"Lagos",
+    "indicator":"ndvi",
+    "label":"Vegetation greenness (NDVI)",
+    "unit":"NDVI",
+    "worse_direction":"down",
+    "domain":"land",
+    "source":"AppEEARS: MODIS Terra MOD13A3 v061, 1 km monthly NDVI (area mean per city box)",
+    "status":"worsening",
+    "direction":"decreasing",
+    "trend_per_decade":-0.0257107426,
+    "p_value":0.0006783002,
+    "kendall_tau":-0.5,
+    "mean_value":0.5885461698,
+    "n_years":24,
+    "start_year":2002,
+    "end_year":2025,
+    "completeness":1.0,
+    "note":"",
+    "data_start":"2002-01-01",
+    "data_end":"2025-12-01",
+    "generated_at":"2026-11-14T20:32:13+00:00"
+  },
+  {
+    "city":"Manila",
+    "indicator":"ndvi",
+    "label":"Vegetation greenness (NDVI)",
+    "unit":"NDVI",
+    "worse_direction":"down",
+    "domain":"land",
+    "source":"AppEEARS: MODIS Terra MOD13A3 v061, 1 km monthly NDVI (area mean per city box)",
+    "status":"no_clear_trend",
+    "direction":"none",
+    "trend_per_decade":0.0055062255,
+    "p_value":0.1181284952,
+    "kendall_tau":0.231884058,
+    "mean_value":0.6225987288,
+    "n_years":24,
+    "start_year":2002,
+    "end_year":2025,
+    "completeness":1.0,
+    "note":"",
+    "data_start":"2002-01-01",
+    "data_end":"2025-12-01",
+    "generated_at":"2026-11-14T20:32:13+00:00"
+  },
+  {
+    "city":"New Delhi",
+    "indicator":"ndvi",
+    "label":"Vegetation greenness (NDVI)",
+    "unit":"NDVI",
+    "worse_direction":"down",
+    "domain":"land",
+    "source":"AppEEARS: MODIS Terra MOD13A3 v061, 1 km monthly NDVI (area mean per city box)",
+    "status":"improving",
+    "direction":"increasing",
+    "trend_per_decade":0.0211241034,
+    "p_value":0.000266098,
+    "kendall_tau":0.5362318841,
+    "mean_value":0.4351214194,
+    "n_years":24,
+    "start_year":2002,
+    "end_year":2025,
+    "completeness":1.0,
+    "note":"",
+    "data_start":"2002-01-01",
+    "data_end":"2025-12-01",
+    "generated_at":"2026-11-14T20:32:13+00:00"
+  },
+  {
+    "city":"Seoul",
+    "indicator":"ndvi",
+    "label":"Vegetation greenness (NDVI)",
+    "unit":"NDVI",
+    "worse_direction":"down",
+    "domain":"land",
+    "source":"AppEEARS: MODIS Terra MOD13A3 v061, 1 km monthly NDVI (area mean per city box)",
+    "status":"improving",
+    "direction":"increasing",
+    "trend_per_decade":0.0170186747,
+    "p_value":0.0000141984,
+    "kendall_tau":0.6376811594,
+    "mean_value":0.4833273688,
+    "n_years":24,
+    "start_year":2002,
+    "end_year":2025,
+    "completeness":1.0,
+    "note":"",
+    "data_start":"2002-01-01",
+    "data_end":"2025-12-01",
+    "generated_at":"2026-11-14T20:32:13+00:00"
+  },
+  {
+    "city":"Shanghai",
+    "indicator":"ndvi",
+    "label":"Vegetation greenness (NDVI)",
+    "unit":"NDVI",
+    "worse_direction":"down",
+    "domain":"land",
+    "source":"AppEEARS: MODIS Terra MOD13A3 v061, 1 km monthly NDVI (area mean per city box)",
+    "status":"improving",
+    "direction":"increasing",
+    "trend_per_decade":0.0194882045,
+    "p_value":0.0000276574,
+    "kendall_tau":0.615942029,
+    "mean_value":0.4062776073,
+    "n_years":24,
+    "start_year":2002,
+    "end_year":2025,
+    "completeness":1.0,
+    "note":"",
+    "data_start":"2002-01-01",
+    "data_end":"2025-12-01",
+    "generated_at":"2026-11-14T20:32:13+00:00"
+  },
+  {
+    "city":"Tokyo",
+    "indicator":"ndvi",
+    "label":"Vegetation greenness (NDVI)",
+    "unit":"NDVI",
+    "worse_direction":"down",
+    "domain":"land",
+    "source":"AppEEARS: MODIS Terra MOD13A3 v061, 1 km monthly NDVI (area mean per city box)",
+    "status":"improving",
+    "direction":"increasing",
+    "trend_per_decade":0.0106115937,
+    "p_value":0.0000056467,
+    "kendall_tau":0.6666666667,
+    "mean_value":0.4510528632,
+    "n_years":24,
+    "start_year":2002,
+    "end_year":2025,
+    "completeness":1.0,
+    "note":"",
+    "data_start":"2002-01-01",
+    "data_end":"2025-12-01",
+    "generated_at":"2026-11-14T20:32:13+00:00"
   }
 ]
