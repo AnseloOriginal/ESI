@@ -6,6 +6,9 @@ export type Cleanup = () => void;
 export type Mount = (root: HTMLElement) => Cleanup | void;
 export interface Route { section: string; title: string; pattern: RegExp; load: (params: string[]) => Promise<Mount> }
 
+const INTRO_MAX_DURATION_MS = 3000;
+const loadingView = '<div class="page-content"><p class="loading"><span class="spinner"></span>Loading data</p></div>';
+
 export function startRouter(root: HTMLElement, routes: Route[], onNavigate: (section: string) => void): void {
   let cleanup: Cleanup | undefined;
   let token = 0;
@@ -31,22 +34,27 @@ export function startRouter(root: HTMLElement, routes: Route[], onNavigate: (sec
     document.title = `${route.title} - Earth Sustainability Initiative`;
     root.setAttribute('aria-busy', 'true');
     const showIntro = firstLoad;
-    const startedAt = performance.now();
     firstLoad = false;
     root.innerHTML = showIntro
-      ? '<section class="intro-screen" role="status" aria-live="polite" aria-label="Loading Earth Sustainability Initiative"><div class="intro-lockup"><p class="intro-name"><span class="intro-initial">E</span>arth <span class="intro-initial">S</span>ustainability <span class="intro-initial">I</span>nitiative</p><p class="intro-tagline">Real-time insights for a thriving planet.</p><div class="intro-progress"><span class="spinner" aria-hidden="true"></span><span>Preparing your view</span></div></div></section>'
-      : '<div class="page-content"><p class="loading"><span class="spinner"></span>Loading data</p></div>';
+      ? '<section class="intro-screen" role="status" aria-live="polite" aria-label="Loading Earth Sustainability Initiative"><div class="intro-lockup"><p class="intro-name"><span class="intro-word"><span class="intro-initial earth-initial">E</span>arth</span> <span class="intro-word"><span class="intro-initial sustainability-initial">S</span>ustainability</span> <span class="intro-word"><span class="intro-initial initiative-initial">I</span>nitiative</span></p><p class="intro-tagline">Real-time insights for a thriving planet.</p><div class="intro-progress"><span class="spinner" aria-hidden="true"></span><span>Preparing your view</span></div></div></section>'
+      : loadingView;
+    const introFinished = showIntro
+      ? new Promise<void>((resolve) => window.setTimeout(() => {
+          if (mine === token) root.innerHTML = loadingView;
+          resolve();
+        }, INTRO_MAX_DURATION_MS))
+      : Promise.resolve();
     try {
       const mount = await route.load(params);
       if (mine !== token) return;
-      if (showIntro) await new Promise((resolve) => window.setTimeout(resolve, Math.max(0, 1350 - (performance.now() - startedAt))));
+      await introFinished;
       if (mine !== token) return;
       cleanup = mount(root) ?? undefined;
       root.focus({ preventScroll: true });
       window.scrollTo(0, 0);
     } catch (err) {
       if (mine !== token) return;
-      if (showIntro) await new Promise((resolve) => window.setTimeout(resolve, Math.max(0, 1350 - (performance.now() - startedAt))));
+      await introFinished;
       if (mine !== token) return;
       const msg = err instanceof Error ? err.message : 'Something went wrong.';
       root.innerHTML = `<div class="page-content"><div class="card notice"><h1>Could not load the data</h1><p>${esc(msg)}</p><button class="link-button" id="retry" type="button">Try again</button></div></div>`;
