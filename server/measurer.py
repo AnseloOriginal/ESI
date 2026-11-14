@@ -61,14 +61,24 @@ class Measurer:
         self.min_completeness = min_completeness
 
     # ------------------------------------------------------------------ public
-    def measure(self, data: pd.DataFrame, worse_direction: str = "up") -> TrendResult:
+    def measure(
+        self,
+        data: pd.DataFrame,
+        worse_direction: str = "up",
+        neutral_labels: tuple[str, str] = ("rising", "falling"),
+    ) -> TrendResult:
         """
         data: DataFrame with `date` and `value` columns (monthly).
-        worse_direction: "up" if an increase is bad (temperature),
-                         "down" if a decrease is bad (rainfall, vegetation).
+        worse_direction: "up"   an increase is bad (temperature)
+                         "down" a decrease is bad (vegetation)
+                         "both" neither direction is simply good or bad (rainfall: drought vs flooding);
+                                a significant trend is labelled with neutral_labels instead of
+                                worsening/improving.
+        neutral_labels: (label for a significant increase, label for a significant decrease),
+                        only used when worse_direction == "both", e.g. ("wetter", "drier").
         """
-        if worse_direction not in ("up", "down"):
-            raise ValueError("worse_direction must be 'up' or 'down'")
+        if worse_direction not in ("up", "down", "both"):
+            raise ValueError("worse_direction must be 'up', 'down' or 'both'")
 
         s = self._to_monthly_series(data)
         if s.empty:
@@ -115,8 +125,11 @@ class Measurer:
         significant = p < self.alpha and slope_per_year != 0
         if significant:
             direction = "increasing" if slope_per_year > 0 else "decreasing"
-            is_bad = (direction == "increasing") == (worse_direction == "up")
-            status = WORSENING if is_bad else IMPROVING
+            if worse_direction == "both":
+                status = neutral_labels[0] if direction == "increasing" else neutral_labels[1]
+            else:
+                is_bad = (direction == "increasing") == (worse_direction == "up")
+                status = WORSENING if is_bad else IMPROVING
         else:
             direction, status = "none", NO_CLEAR_TREND
 

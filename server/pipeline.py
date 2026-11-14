@@ -19,6 +19,7 @@ import pandas as pd
 
 from feeders.base import STANDARD_COLUMNS, Feeder
 from measurer import Measurer
+from settings import OUTPUT_DIR
 
 log = logging.getLogger("pipeline")
 
@@ -29,14 +30,17 @@ class PipelineResult:
     results: pd.DataFrame
     errors: pd.DataFrame
 
-    def save(self, out_dir: str | Path = "output") -> Path:
+    def save(self, out_dir: str | Path = OUTPUT_DIR) -> Path:
         out = Path(out_dir)
         out.mkdir(parents=True, exist_ok=True)
         self.series.to_csv(out / "series.csv", index=False, date_format="%Y-%m-%d")
         self.results.to_csv(out / "results.csv", index=False)
         self.results.to_json(out / "results.json", orient="records", indent=2)
-        if not self.errors.empty:
-            self.errors.to_csv(out / "errors.csv", index=False)
+        errors_path = out / "errors.csv"
+        if self.errors.empty:
+            errors_path.unlink(missing_ok=True)   # don't leave stale errors from an earlier run
+        else:
+            self.errors.to_csv(errors_path, index=False)
         return out
 
 
@@ -65,7 +69,7 @@ class Pipeline:
             for city in targets:
                 try:
                     df = feeder.load(city)
-                    trend = self.measurer.measure(df, feeder.worse_direction)
+                    trend = self.measurer.measure(df, feeder.worse_direction, (feeder.up_label, feeder.down_label))
                 except Exception as exc:  # noqa: BLE001  one bad file must not stop the run
                     log.warning("%s / %s failed: %s", name, city, exc)
                     errors.append({"feeder": name, "city": city, "error": f"{type(exc).__name__}: {exc}"})

@@ -17,6 +17,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from settings import RAW_DIR
+
 STANDARD_COLUMNS = ["date", "value", "indicator", "unit", "city", "source"]
 
 
@@ -26,15 +28,20 @@ class Feeder(ABC):
     label: str = ""                # human name for the dashboard, e.g. "Air temperature"
     unit: str = ""                 # unit AFTER postprocess(), e.g. "degC"
     source: str = ""               # dataset/tool, used on the citations page
-    worse_direction: str = "up"    # "up" = an increase is a threat, "down" = a decrease is
+    worse_direction: str = "up"    # "up" = an increase is a threat, "down" = a decrease is,
+                                   # "both" = either direction is a shift, not simply good or bad
+    up_label: str = ""             # only for "both": status for a significant increase, e.g. "wetter"
+    down_label: str = ""           # only for "both": status for a significant decrease, e.g. "drier"
 
-    def __init__(self, raw_dir: str | Path = "data/raw"):
+    def __init__(self, raw_dir: str | Path = RAW_DIR):
         self.raw_dir = Path(raw_dir)
         for attr in ("indicator", "unit", "source"):
             if not getattr(self, attr):
                 raise NotImplementedError(f"{type(self).__name__} must set `{attr}`")
-        if self.worse_direction not in ("up", "down"):
-            raise ValueError("worse_direction must be 'up' or 'down'")
+        if self.worse_direction not in ("up", "down", "both"):
+            raise ValueError("worse_direction must be 'up', 'down' or 'both'")
+        if self.worse_direction == "both" and not (self.up_label and self.down_label):
+            raise NotImplementedError(f"{type(self).__name__} uses 'both', so it must set `up_label` and `down_label`")
 
     # ---- subclasses implement these -------------------------------------
     @abstractmethod

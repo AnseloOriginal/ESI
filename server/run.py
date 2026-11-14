@@ -6,12 +6,13 @@ import pandas as pd
 
 from feeders import ALL_FEEDERS
 from pipeline import Pipeline
+from settings import OUTPUT_DIR, RAW_DIR
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Collect, measure and save environmental trends.")
-    parser.add_argument("--raw", default="data/raw", help="folder with downloaded CSVs")
-    parser.add_argument("--out", default="output", help="folder for results")
+    parser.add_argument("--raw", default=str(RAW_DIR), help="folder with downloaded CSVs")
+    parser.add_argument("--out", default=str(OUTPUT_DIR), help="folder for results")
     parser.add_argument("--cities", nargs="*", help="limit to these cities (default: all found)")
     args = parser.parse_args()
 
