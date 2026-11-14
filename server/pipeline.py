@@ -69,7 +69,7 @@ class Pipeline:
             for city in targets:
                 try:
                     df = feeder.load(city)
-                    trend = self.measurer.measure(df, feeder.worse_direction)
+                    trend = self.measurer.measure(df, feeder.worse_direction, (feeder.up_label, feeder.down_label))
                 except Exception as exc:  # noqa: BLE001  one bad file must not stop the run
                     log.warning("%s / %s failed: %s", name, city, exc)
                     errors.append({"feeder": name, "city": city, "error": f"{type(exc).__name__}: {exc}"})

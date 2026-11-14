@@ -30,8 +30,11 @@ from settings import BASE_DIR, OUTPUT_DIR
 
 log = logging.getLogger("api")
 
-Status = Literal["worsening", "improving", "no_clear_trend", "insufficient_data"]
-STATUSES = ["worsening", "improving", "no_clear_trend", "insufficient_data"]
+# worsening/improving: for indicators where one direction is a threat (temperature, vegetation)
+# wetter/drier:        for indicators where either direction is a shift (precipitation)
+Status = Literal["worsening", "improving", "wetter", "drier", "no_clear_trend", "insufficient_data"]
+STATUSES = ["worsening", "improving", "wetter", "drier", "no_clear_trend", "insufficient_data"]
+WorseDirection = Literal["up", "down", "both"]
 
 
 # ----------------------------------------------------------------------------- models
@@ -40,7 +43,7 @@ class Trend(BaseModel):
     indicator: str
     label: str
     unit: str
-    worse_direction: Literal["up", "down"]
+    worse_direction: WorseDirection
     source: str
     status: Status
     direction: Literal["increasing", "decreasing", "none"]
@@ -77,7 +80,7 @@ class IndicatorInfo(BaseModel):
     indicator: str
     label: str
     unit: str
-    worse_direction: Literal["up", "down"]
+    worse_direction: WorseDirection
     source: str
     n_cities: int
 

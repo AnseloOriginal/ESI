@@ -6,7 +6,9 @@ class PrecipitationFeeder(GiovanniFeeder):
     label = "Precipitation"
     unit = "mm/day"
     source = "Giovanni: GPM IMERG Final Run monthly v07 (GPM_3IMERGM_07_precipitation)"
-    worse_direction = "down"   # less rain = drought pressure
+    worse_direction = "both"   # drier = drought pressure, wetter = flood pressure
+    up_label = "wetter"
+    down_label = "drier"
     file_key = "precip"
 
     def postprocess(self, df):
