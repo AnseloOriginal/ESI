@@ -7,4 +7,5 @@ class TemperatureFeeder(GiovanniFeeder):
     unit = "degC"
     source = "Giovanni: MERRA-2 M2TMNXSLV v5.12.4 (T2M)"
     worse_direction = "up"
+    domain = "heat"
     file_key = "temp"

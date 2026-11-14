@@ -5,7 +5,7 @@ Run (from anywhere):   py server/api.py
 Interactive docs:      http://127.0.0.1:8000/docs
 Types for TS client:   http://127.0.0.1:8000/openapi.json
 
-The API does no analysis itself. It loads output/results.csv and output/series.csv
+The API does no analysis itself. It loads output/results.csv, series.csv, projections.csv and pressure.csv
 (building them with the Pipeline on first start, or when you POST /api/refresh)
 and serves them as JSON.
 """
@@ -25,8 +25,10 @@ from pydantic import BaseModel
 
 from cities import CITIES, POPULATION_SOURCE
 from feeders import ALL_FEEDERS
+from habitability import methodology
 from pipeline import Pipeline
 from settings import BASE_DIR, OUTPUT_DIR
+from thresholds import THRESHOLDS
 
 log = logging.getLogger("api")
 
@@ -44,6 +46,7 @@ class Trend(BaseModel):
     label: str
     unit: str
     worse_direction: WorseDirection
+    domain: str | None = None
     source: str
     status: Status
     direction: Literal["increasing", "decreasing", "none"]
@@ -124,6 +127,107 @@ class Health(BaseModel):
     unknown_cities: list[str]                # in the data but missing from cities.py (usually a file-name typo)
 
 
+ProjectionStatus = Literal["exceeded", "approaching", "distant", "uncertain", "not_approaching", "insufficient_data"]
+Band = Literal["low", "moderate", "high", "very_high", "insufficient_data"]
+
+
+class CitationOut(BaseModel):
+    authors: str
+    year: int
+    title: str
+    venue: str
+    url: str
+    verified: bool
+
+
+class ThresholdOut(BaseModel):
+    id: str
+    indicator: str
+    label: str
+    value: float
+    unit: str
+    comparison: Literal["above", "below"]
+    meaning: str
+    caveats: list[str]
+    citation: CitationOut
+    active: bool
+    inactive_reason: str
+
+
+class ProjectionOut(BaseModel):
+    city: str
+    indicator: str
+    threshold_id: str
+    threshold_value: float | None = None
+    threshold_unit: str | None = None
+    comparison: str | None = None
+    status: ProjectionStatus
+    end_year: int | None = None
+    current_level: float | None = None
+    recent_mean: float | None = None
+    distance: float | None = None
+    slope_per_decade: float | None = None
+    slope_low_per_decade: float | None = None
+    slope_high_per_decade: float | None = None
+    significant: bool = False
+    years_central: float | None = None
+    years_fast: float | None = None
+    years_slow: float | None = None
+    year_central: float | None = None
+    horizon_years: int
+    note: str | None = None
+
+
+class DomainSignal(BaseModel):
+    signal: float            # share (0-1) of the domain's evaluated indicators with a significant adverse/shift trend
+    adverse: int
+    evaluated: int
+
+
+class PressureOut(BaseModel):
+    city: str
+    rank: int
+    score: float | None = None
+    band: Band
+    basis: str
+    trend_evidence: float | None = None
+    threshold_proximity: float | None = None
+    n_evaluated: int
+    n_adverse: int
+    domain_signals: dict[str, DomainSignal]
+
+
+class PressureDetail(BaseModel):
+    pressure: PressureOut
+    projections: list[ProjectionOut]
+    results: list[Trend]
+
+
+class MethodPart(BaseModel):
+    name: str
+    description: str
+    weight: float
+
+
+class ScoreBand(BaseModel):
+    label: str
+    min_score: float
+    max_score: float
+
+
+class Methodology(BaseModel):
+    summary: str
+    horizon_years: int
+    confidence_level: float
+    trend_test: str
+    projection: str
+    score_formula: str
+    parts: list[MethodPart]
+    bands: list[ScoreBand]
+    interpretation: str
+    caveats: list[str]
+
+
 # ----------------------------------------------------------------------------- data store
 def _norm(text: str) -> str:
     return text.strip().lower().replace("-", " ").replace("_", " ")
@@ -134,25 +238,46 @@ def _records(df: pd.DataFrame) -> list[dict]:
     return json.loads(df.to_json(orient="records"))
 
 
+def _read_csv_or_empty(path) -> pd.DataFrame:
+    try:
+        return pd.read_csv(path)
+    except pd.errors.EmptyDataError:
+        return pd.DataFrame()
+
+
+def _pressure_records(df: pd.DataFrame) -> list[dict]:
+    rows = _records(df)
+    for r in rows:
+        ds = r.get("domain_signals")
+        r["domain_signals"] = json.loads(ds) if isinstance(ds, str) else (ds or {})
+    return rows
+
+
 class Store:
     def __init__(self) -> None:
         self._lock = threading.Lock()
         self.series = pd.DataFrame()
         self.results = pd.DataFrame()
         self.errors = pd.DataFrame(columns=["feeder", "city", "error"])
+        self.projections = pd.DataFrame()
+        self.pressure = pd.DataFrame()
 
     def load(self, rebuild: bool = False) -> None:
         with self._lock:
-            have_files = (OUTPUT_DIR / "results.csv").exists() and (OUTPUT_DIR / "series.csv").exists()
+            names = ("results", "series", "projections", "pressure")
+            have_files = all((OUTPUT_DIR / f"{n}.csv").exists() for n in names)
             if rebuild or not have_files:
                 log.info("Running pipeline ...")
                 res = Pipeline([cls() for cls in ALL_FEEDERS]).run()
                 res.save(OUTPUT_DIR)
                 series, results, errors = res.series, res.results, res.errors
+                projections, pressure = res.projections, res.pressure
             else:
                 log.info("Loading saved results from %s", OUTPUT_DIR)
                 series = pd.read_csv(OUTPUT_DIR / "series.csv")
                 results = pd.read_csv(OUTPUT_DIR / "results.csv")
+                projections = _read_csv_or_empty(OUTPUT_DIR / "projections.csv")
+                pressure = _read_csv_or_empty(OUTPUT_DIR / "pressure.csv")
                 err_path = OUTPUT_DIR / "errors.csv"
                 errors = pd.read_csv(err_path) if err_path.exists() else pd.DataFrame(columns=["feeder", "city", "error"])
 
@@ -160,6 +285,7 @@ class Store:
                 series = series.copy()
                 series["date"] = pd.to_datetime(series["date"]).dt.strftime("%Y-%m-%d")
             self.series, self.results, self.errors = series, results, errors
+            self.projections, self.pressure = projections, pressure
 
     # -- helpers used by the endpoints
     def city_rows(self, city: str) -> pd.DataFrame:
@@ -318,6 +444,60 @@ def get_series(city: str, indicator: str):
 def _label_for(indicator: str) -> str:
     match = store.results[store.results["indicator"] == indicator]
     return str(match["label"].iloc[0]) if not match.empty else indicator
+
+
+@app.get("/api/thresholds", response_model=list[ThresholdOut])
+def list_thresholds():
+    """Published thresholds with full citations. Inactive ones are listed but not used in any calculation."""
+    return [t.to_dict() for t in THRESHOLDS]
+
+
+@app.get("/api/projections", response_model=list[ProjectionOut])
+def list_projections(
+    city: str | None = None,
+    indicator: str | None = None,
+    status: ProjectionStatus | None = None,
+):
+    """Years until each city's trend reaches a published threshold, with fast/slow cases."""
+    df = store.projections
+    if df.empty:
+        return []
+    if city:
+        df = df[df["city"].map(_norm) == _norm(city)]
+    if indicator:
+        df = df[df["indicator"] == indicator]
+    if status:
+        df = df[df["status"] == status]
+    return _records(df)
+
+
+@app.get("/api/pressure", response_model=list[PressureOut])
+def list_pressure():
+    """Cities ranked by habitability pressure score (highest first)."""
+    return _pressure_records(store.pressure) if not store.pressure.empty else []
+
+
+@app.get("/api/pressure/{city}", response_model=PressureDetail)
+def pressure_detail(city: str):
+    """One city's score, its projections and the indicator results behind it."""
+    p = store.pressure
+    rows = p[p["city"].map(_norm) == _norm(city)] if not p.empty else p
+    if rows.empty:
+        raise HTTPException(404, f"No data for city '{city}'")
+    name = rows["city"].iloc[0]
+    proj = store.projections
+    proj = proj[proj["city"] == name] if not proj.empty else proj
+    return PressureDetail(
+        pressure=_pressure_records(rows)[0],
+        projections=_records(proj) if not proj.empty else [],
+        results=_records(store.city_rows(name)),
+    )
+
+
+@app.get("/api/methodology", response_model=Methodology)
+def get_methodology():
+    """How trends, projections and the pressure score are computed (for the dashboard's method panel)."""
+    return methodology()
 
 
 @app.get("/api/errors", response_model=list[PipelineError])
