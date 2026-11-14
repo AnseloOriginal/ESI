@@ -1,12 +1,19 @@
 @media (max-width: 960px) {
   .globe-card, .two-col { grid-template-columns: 1fr; }
+  .overview-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .overview-heading { margin-bottom: 12px; }
 }
 @media (max-width: 760px) {
   .page-content { padding: 28px 18px; }
   h1 { font-size: 26px; }
-  .rank-row { grid-template-columns: 80px 1fr 50px; }
 }
 @media (max-width: 600px) {
   .sidebar.expanded { width: 226px; }
   .sidebar.expanded ~ .main-content { margin-left: 226px; }
+  .overview-content { padding-top: 22px; }
+  .overview-heading .lede { font-size: 15px; }
+  .overview-period { font-size: 12px; }
+  .globe-stage { width: min(100%, 480px); }
+  .globe-legend { left: 9px; bottom: 9px; gap: 3px; padding: 8px 10px; font-size: 11px; }
+  .city-detail { top: auto; right: 12px; bottom: 12px; width: calc(100% - 24px); max-height: 65%; padding: 15px; transform: none; }
 }

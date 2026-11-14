@@ -1,13 +1,14 @@
 import type { Trend } from '../api/client';
+import { PRESSURE_COLORS } from './palette';
 
 export interface Pressure { worsening: number; tested: number; ratio: number | null; color: string }
 
 export const PRESSURE_LEGEND = [
-  { color: '#789171', label: 'No indicator worsening' },
-  { color: '#bb9a52', label: 'Up to a third worsening' },
-  { color: '#b9794c', label: 'Up to two thirds worsening' },
-  { color: '#a6533b', label: 'More than two thirds worsening' },
-  { color: '#817f73', label: 'Not enough data' },
+  { color: PRESSURE_COLORS.none, label: 'No indicator worsening' },
+  { color: PRESSURE_COLORS.low, label: 'Up to a third worsening' },
+  { color: PRESSURE_COLORS.medium, label: 'Up to two thirds worsening' },
+  { color: PRESSURE_COLORS.high, label: 'More than two thirds worsening' },
+  { color: PRESSURE_COLORS.insufficient, label: 'Not enough data' },
 ];
 
 /** Share of tested indicators (excluding neutral rainfall) with a significant worsening trend. */

@@ -1,12 +1,13 @@
 import type { Status } from '../api/client';
+import { STATUS_COLORS } from './palette';
 
 export const STATUS_META: Record<Status, { label: string; color: string; hint: string }> = {
-  worsening: { label: 'Worsening', color: '#a6533b', hint: 'A statistically significant trend in the harmful direction.' },
-  improving: { label: 'Improving', color: '#496b4d', hint: 'A statistically significant trend in the beneficial direction.' },
-  wetter: { label: 'Wetter', color: '#537a82', hint: 'Significantly more rainfall. Shown neutrally: it can bring flood pressure or relief.' },
-  drier: { label: 'Drier', color: '#537a82', hint: 'Significantly less rainfall. Shown neutrally: it can bring drought pressure or relief.' },
-  no_clear_trend: { label: 'No clear trend', color: '#817f73', hint: 'Change is not distinguishable from natural variability. This is not proof of stability.' },
-  insufficient_data: { label: 'Insufficient data', color: '#b5b1a5', hint: 'Too short or too incomplete to test.' },
+  worsening: { label: 'Worsening', color: STATUS_COLORS.worsening, hint: 'A statistically significant trend in the harmful direction.' },
+  improving: { label: 'Improving', color: STATUS_COLORS.improving, hint: 'A statistically significant trend in the beneficial direction.' },
+  wetter: { label: 'Wetter', color: STATUS_COLORS.wetter, hint: 'Significantly more rainfall. Shown neutrally: it can bring flood pressure or relief.' },
+  drier: { label: 'Drier', color: STATUS_COLORS.drier, hint: 'Significantly less rainfall. Shown neutrally: it can bring drought pressure or relief.' },
+  no_clear_trend: { label: 'No clear trend', color: STATUS_COLORS.no_clear_trend, hint: 'Change is not distinguishable from natural variability. This is not proof of stability.' },
+  insufficient_data: { label: 'Insufficient data', color: STATUS_COLORS.insufficient_data, hint: 'Too short or too incomplete to test.' },
 };
 
 export const SIGNIFICANT: Status[] = ['worsening', 'improving', 'wetter', 'drier'];

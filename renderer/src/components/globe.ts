@@ -60,11 +60,16 @@ export function createGlobe(host: HTMLElement, markers: GlobeMarker[], onSelect:
     ctx!.fillStyle = glow;
     ctx!.beginPath(); ctx!.arc(cx, cy, r * 1.14, 0, Math.PI * 2); ctx!.fill();
 
-    ctx!.beginPath(); path({ type: 'Sphere' }); ctx!.fillStyle = '#273a31'; ctx!.fill();
-    ctx!.beginPath(); path(graticule); ctx!.strokeStyle = 'rgba(255,255,255,.07)'; ctx!.lineWidth = 0.6; ctx!.stroke();
-    ctx!.beginPath(); path(land); ctx!.fillStyle = '#61765c'; ctx!.fill();
-    ctx!.beginPath(); path(borders); ctx!.strokeStyle = 'rgba(30,43,33,.7)'; ctx!.lineWidth = 0.5; ctx!.stroke();
-    ctx!.beginPath(); path({ type: 'Sphere' }); ctx!.strokeStyle = 'rgba(255,255,255,.2)'; ctx!.lineWidth = 1; ctx!.stroke();
+    ctx!.beginPath(); path({ type: 'Sphere' });
+    const ocean = ctx!.createRadialGradient(cx - r * 0.28, cy - r * 0.34, r * 0.04, cx, cy, r * 1.05);
+    ocean.addColorStop(0, '#397184');
+    ocean.addColorStop(0.62, '#245467');
+    ocean.addColorStop(1, '#142f40');
+    ctx!.fillStyle = ocean; ctx!.fill();
+    ctx!.beginPath(); path(graticule); ctx!.strokeStyle = 'rgba(221,232,228,.13)'; ctx!.lineWidth = 0.6; ctx!.stroke();
+    ctx!.beginPath(); path(land); ctx!.fillStyle = '#8b956f'; ctx!.fill();
+    ctx!.beginPath(); path(borders); ctx!.strokeStyle = 'rgba(42,76,72,.72)'; ctx!.lineWidth = 0.55; ctx!.stroke();
+    ctx!.beginPath(); path({ type: 'Sphere' }); ctx!.strokeStyle = 'rgba(225,238,233,.3)'; ctx!.lineWidth = 1; ctx!.stroke();
 
     visible = [];
     markers.forEach((m, i) => {
