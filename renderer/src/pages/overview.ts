@@ -60,8 +60,8 @@ export async function overviewPage(): Promise<Mount> {
       <div class="page-content overview-content">
         <header class="page-header overview-heading">
           <div>
-            <h1>Overview</h1>
-            <p class="lede">Explore long-term environmental trends across ${rows.length} cities.</p>
+            <h1>Earth Sustainability Initiative</h1>
+            <p class="lede">A city-by-city view of long-term environmental change.</p>
           </div>
           <p class="overview-period">${esc(period)} <span>·</span> updated ${esc(formatDate(health.generated_at))}</p>
         </header>

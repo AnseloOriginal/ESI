@@ -1,15 +1,16 @@
 :root {
   color-scheme: light;
   /* Warm paper, ink, and field greens keep the data calm and readable. */
-  --color-ink: #252b25;
-  --color-text: #3f493f;
-  --color-muted: #697267;
-  --color-canvas: #f5f4ef;
-  --color-surface: #fffefa;
-  --color-border: #e2e0d8;
-  --color-forest: #405e43;
-  --color-forest-hover: #314c36;
-  --color-forest-soft: #edf1e9;
+  --color-ink: #18231c;
+  --color-text: #26362b;
+  --color-muted: #4b5b50;
+  --color-canvas: #f4f3ed;
+  --color-surface: #fff;
+  --color-border: #d8ddd6;
+  --color-forest: #386244;
+  --color-forest-hover: #2c5036;
+  --color-forest-soft: #e4eee5;
+  --color-water-soft: #e8f0f4;
   --color-leaf: #4f7956;
   --color-water: #4d799a;
   --color-rose: #c1354c;
@@ -27,7 +28,9 @@
   --pressure-medium: #df7a82;
   --pressure-high: #c1354c;
   --pressure-insufficient: #788d9a;
-  font-family: "Segoe UI", Arial, sans-serif;
+  --font-sans: "Segoe UI Variable Text", "Segoe UI", Arial, sans-serif;
+  --font-display: "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-family: var(--font-sans);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
