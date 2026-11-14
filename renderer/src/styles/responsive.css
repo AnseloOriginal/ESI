@@ -4,6 +4,9 @@
   .overview-heading { margin-bottom: 12px; }
   .city-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rank-legend, .pressure-row { grid-template-columns: minmax(120px, 1.1fr) minmax(110px, 1fr) minmax(155px, 1.2fr) minmax(95px, .7fr); gap: 10px; }
+  .explore-controls { grid-template-columns: 1fr; }
+  .explore-picker-body { grid-template-columns: 1fr; }
+  .explore-actions { grid-column: auto; }
 }
 @media (max-width: 760px) {
   .page-content { padding: 28px 18px; }
@@ -31,6 +34,9 @@
   .part-mobile { display: block; grid-column: 1; grid-row: 1; color: var(--color-muted); font-size: 10px; }
   .rank-city { grid-column: 1; }
   .method-drawer-content { grid-template-columns: 1fr; gap: 12px; }
+  .explore-content { padding-top: 22px; }
+  .explore-controls { padding: 12px; }
+  .explore-indicator-card { padding: 14px; }
   .globe-stage { width: min(100%, 480px); }
   .globe-legend { left: 9px; bottom: 9px; gap: 3px; padding: 8px 10px; font-size: 11px; }
   .city-detail { top: auto; right: 12px; bottom: 12px; width: calc(100% - 24px); max-height: 65%; padding: 15px; transform: none; }

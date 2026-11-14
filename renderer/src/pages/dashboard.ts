@@ -2,7 +2,8 @@ import { icon } from '../shared/icon';
 
 const navigation = [
   { label: 'Overview', icon: 'grid', href: '#/overview', section: 'overview' },
-  { label: 'City Pressure', icon: 'chart', href: '#/trending', section: 'trending' },
+  { label: 'City Pressure', icon: 'gauge', href: '#/trending', section: 'trending' },
+  { label: 'Explore Trends', icon: 'chart', href: '#/explore', section: 'explore' },
   { label: 'City view', icon: 'map-pin', href: '#/city', section: 'city' },
   { label: 'The initiative', icon: 'info', href: '#/initiative', section: 'initiative' },
 ];
