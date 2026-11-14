@@ -1,4 +1,4 @@
-import { api } from '../api/client';
+import { api, type Pressure, type Projection } from '../api/client';
 import { lineChart } from '../components/charts';
 import { SIGNIFICANT, STATUS_META, cityHash, esc, formatDate, formatPValue, formatPopulation, signed, statusBadge, unitLabel } from '../shared/format';
 import type { Mount } from '../router';
@@ -20,7 +20,17 @@ export async function cityPage(params: string[]): Promise<Mount> {
   const asked = params[0] ? decodeURIComponent(params[0]) : lastCity;
   const city = cities.find((c) => c.name.toLowerCase() === asked?.toLowerCase()) ?? cities[0];
   lastCity = city.name;
-  const detail = await api.city(city.name);
+  const [detail, pressureRows, projectionRows, thresholds] = await Promise.all([
+    api.city(city.name), api.pressure(), api.projections(), api.thresholds(),
+  ]);
+  const pressure = pressureRows.find((p: Pressure) => p.city === city.name);
+  const projection = projectionRows.find((p: Projection) => p.city === city.name && p.status !== 'insufficient_data');
+  const threshold = thresholds.find((t) => t.active && t.id === projection?.threshold_id)
+    ?? thresholds.find((t) => t.active);
+  const markerName = threshold ? `${threshold.value}°C marker` : 'active temperature marker';
+  const estimate = projection?.status === 'approaching' && projection.years_central != null
+    ? `about ${Math.round(projection.years_central)} years${projection.years_fast != null && projection.years_slow != null ? ` (${Math.round(projection.years_fast)}–${Math.round(projection.years_slow)} years fast–slow range)` : ''}`
+    : projection?.status === 'distant' ? 'More than 100 years away' : 'No approaching trend identified';
   const trends = [...detail.results].sort((a, b) => a.label.localeCompare(b.label));
   const updated = trends.find((t) => t.generated_at)?.generated_at;
   const startYears = trends.map((t) => t.start_year).filter((year): year is number => year != null);
@@ -47,6 +57,21 @@ export async function cityPage(params: string[]): Promise<Mount> {
           <div class="city-summary-item"><dt>Indicators</dt><dd>${trends.length}<small>Measured for this city</small></dd></div>
           <div class="city-summary-item"><dt>Last updated</dt><dd>${esc(formatDate(updated))}<small>Most recent data refresh</small></dd></div>
         </dl>
+        <section class="city-pressure-strip" aria-label="City habitability pressure comparison">
+          <div class="city-pressure-heading"><div><p class="eyebrow">SCREENING INDEX</p><h2>Habitability pressure</h2></div>
+            <strong class="city-pressure-score" title="Relative screening index from 0 to 100">${pressure?.score == null ? '—' : pressure.score.toFixed(1)}<small>/100</small></strong>
+          </div>
+          <p>Rank ${pressure?.rank ?? '—'} of ${pressureRows.length} cities by overall score. This compares cities relative to one another.</p>
+          <details class="city-pressure-detail"><summary>See score parts and temperature estimate</summary>
+            <div class="city-pressure-parts">
+              <span title="Share of measured indicators with a significant worsening, wetter or drier trend.">Trend evidence <strong>${pressure?.trend_evidence == null ? '—' : pressure.trend_evidence.toFixed(0)}/100</strong></span>
+              <span title="Score based on proximity to the active temperature marker.">Threshold proximity <strong>${pressure?.threshold_proximity == null ? '—' : pressure.threshold_proximity.toFixed(0)}/100</strong></span>
+            </div>
+            <p>${projection?.status === 'approaching' ? `If the 2002–2025 trend continues, the ${markerName} estimate is ${estimate}.` : `Temperature marker: ${estimate}.`}</p>
+            <p class="city-pressure-note">The ${markerName} describes a rarely-lived-in condition, not a survival limit. Rainfall shifts are counted neutrally as wetter or drier.</p>
+          </details>
+          <a href="#/trending">Compare all cities →</a>
+        </section>
         <div class="chart-key" aria-hidden="true">
           <span><i class="key-line raw"></i>Monthly values</span>
           <span><i class="key-line avg"></i>12-month average</span>

@@ -3,6 +3,7 @@
   .overview-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
   .overview-heading { margin-bottom: 12px; }
   .city-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rank-legend, .pressure-row { grid-template-columns: minmax(120px, 1.1fr) minmax(110px, 1fr) minmax(155px, 1.2fr) minmax(95px, .7fr); gap: 10px; }
 }
 @media (max-width: 760px) {
   .page-content { padding: 28px 18px; }
@@ -17,6 +18,19 @@
   .overview-content { padding-top: 22px; }
   .overview-heading .lede { font-size: 15px; }
   .overview-period { font-size: 12px; }
+  .trending-content { padding-top: 22px; }
+  .trending-spotlight { grid-template-columns: auto 1fr; gap: 12px; padding: 18px; }
+  .rank-legend { display: none; }
+  .pressure-row { grid-template-columns: minmax(110px, 1fr) minmax(100px, .8fr); gap: 10px 14px; padding: 13px 4px; }
+  .part-cell { grid-template-columns: 1fr auto; }
+  .part-cell strong { grid-column: 2; grid-row: 1; }
+  .part-track { grid-column: 1 / -1; grid-row: 2; }
+  .proximity-cell { grid-template-columns: 1fr auto; }
+  .proximity-cell small { grid-column: 1 / -1; }
+  .score-cell { grid-column: 2; justify-content: flex-end; }
+  .part-mobile { display: block; grid-column: 1; grid-row: 1; color: var(--color-muted); font-size: 10px; }
+  .rank-city { grid-column: 1; }
+  .method-drawer-content { grid-template-columns: 1fr; gap: 12px; }
   .globe-stage { width: min(100%, 480px); }
   .globe-legend { left: 9px; bottom: 9px; gap: 3px; padding: 8px 10px; font-size: 11px; }
   .city-detail { top: auto; right: 12px; bottom: 12px; width: calc(100% - 24px); max-height: 65%; padding: 15px; transform: none; }

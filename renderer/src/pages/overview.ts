@@ -78,7 +78,9 @@ export async function overviewPage(): Promise<Mount> {
           <aside class="city-detail" id="city-panel" aria-live="polite" aria-label="City details" hidden></aside>
         </section>
 
-        <p class="overview-note">Marker color shows the share of measured indicators with a significant worsening trend. Rainfall is shown neutrally; wetter or drier is not always better or worse.</p>
+        <div class="overview-footnote"><p class="overview-note">Marker color shows the share of measured indicators with a significant worsening trend. Rainfall is shown neutrally; wetter or drier is not always better or worse.</p>
+          <a href="#/trending" title="Compare cities using the habitability pressure screening index">Explore habitability pressure rankings →</a>
+        </div>
       </div>`;
 
     const panel = root.querySelector<HTMLElement>('#city-panel') as HTMLElement;

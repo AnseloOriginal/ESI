@@ -15,6 +15,12 @@ export interface IndicatorInfo { indicator: string; label: string; unit: string;
 export interface IndicatorSummary { indicator: string; label: string; n_cities: number; status_counts: Record<string, number> }
 export interface SeriesOut { city: string; indicator: string; label: string; unit: string; source: string; points: { date: string; value?: number | null }[] }
 
+export interface Projection { city: string; indicator: string; threshold_id: string; threshold_value?: number | null; threshold_unit?: string | null; status: string; end_year?: number | null; current_level?: number | null; years_central?: number | null; years_fast?: number | null; years_slow?: number | null; significant: boolean; horizon_years: number; note?: string | null }
+export interface Pressure { city: string; rank: number; score?: number | null; band: string; basis: string; trend_evidence?: number | null; threshold_proximity?: number | null; n_evaluated: number; n_adverse: number }
+export interface Citation { authors: string; year: number; title: string; venue: string; url: string; verified: boolean }
+export interface Threshold { id: string; indicator: string; label: string; value: number; unit: string; meaning: string; caveats: string[]; citation: Citation; active: boolean }
+export interface Methodology { summary: string; horizon_years: number; confidence_level: number; trend_test: string; projection: string; score_formula: string; parts: { name: string; description: string; weight: number }[]; interpretation: string; caveats: string[] }
+
 export const API_BASE: string = (import.meta.env.VITE_API_URL as string | undefined) ?? 'http://127.0.0.1:8000';
 
 export class ApiError extends Error {}
@@ -51,4 +57,8 @@ export const api = {
   summary: () => cached('summary', () => get<IndicatorSummary[]>('/api/summary')),
   results: () => cached('results', () => get<Trend[]>('/api/results')),
   series: (city: string, indicator: string) => cached(`series:${city}:${indicator}`, () => get<SeriesOut>('/api/series', { city, indicator })),
+  pressure: () => cached('pressure', () => get<Pressure[]>('/api/pressure')),
+  projections: () => cached('projections', () => get<Projection[]>('/api/projections')),
+  methodology: () => cached('methodology', () => get<Methodology>('/api/methodology')),
+  thresholds: () => cached('thresholds', () => get<Threshold[]>('/api/thresholds')),
 };
