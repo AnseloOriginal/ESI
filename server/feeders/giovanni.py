@@ -22,7 +22,13 @@ class GiovanniFeeder(Feeder):
             raise NotImplementedError(f"{type(self).__name__} must set `file_key`")
 
     def _path(self, city: str):
-        return self.raw_dir / f"{city.strip().lower().replace(' ', '_')}_{self.file_key}.csv"
+        filename = f"{city.strip().lower().replace(' ', '_')}_{self.file_key}.csv"
+        path = self.raw_dir / filename
+        if path.exists():
+            return path
+        # City discovery is case-insensitive; resolve matching raw filenames
+        # the same way when a download capitalizes the city name.
+        return next((p for p in self.raw_dir.glob("*.csv") if p.name.lower() == filename), path)
 
     def available_cities(self) -> list[str]:
         suffix = f"_{self.file_key}"

@@ -50,7 +50,7 @@ export async function overviewPage(): Promise<Mount> {
         <div><h2>${esc(row.city.name)}</h2>${row.city.country ? `<p>${esc(row.city.country)}</p>` : ''}</div>
         <button class="city-detail-close" type="button" aria-label="Close city details">${icon('close')}</button>
       </div>
-      <p class="city-detail-summary">${row.pressure.tested ? `${row.pressure.worsening} of ${row.pressure.tested} measured indicators show a worsening trend.` : 'There is not enough data to assess this city.'}</p>
+      <p class="city-detail-summary">${row.trends.length ? `${row.trends.filter((trend) => trend.status === 'worsening').length} of ${row.trends.length} measured indicators show a worsening trend.` : 'There is not enough data to assess this city.'}</p>
       <ul class="city-trend-list">${trendRows}</ul>
       <a class="link-button" href="${cityHash(row.city.name)}">Open city view <span aria-hidden="true">→</span></a>`;
   };

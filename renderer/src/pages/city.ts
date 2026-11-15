@@ -81,7 +81,7 @@ export async function cityPage(params: string[]): Promise<Mount> {
         <div class="indicator-grid">
           ${trends.map((t) => `
             <article class="card indicator-card">
-              <header><h2>${esc(t.label)}</h2>${statusBadge(t.status)}</header><p class="muted">${esc(blurb(t.indicator))}</p>
+              <header><h2 title="${esc(blurb(t.indicator))}">${esc(t.label)}</h2>${statusBadge(t.status)}</header>
               <p class="summary-line">${esc(sentence(t))}</p>
               <dl class="facts">
                 <div><dt>Trend per decade</dt><dd>${t.status === 'insufficient_data' ? '—' : `${signed(t.trend_per_decade)} ${esc(unitLabel(t.unit))}`}</dd></div>

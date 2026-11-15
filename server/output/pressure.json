@@ -43,9 +43,9 @@
     "basis":"trend_evidence+threshold_proximity",
     "trend_evidence":33.3,
     "threshold_proximity":0.0,
-    "n_evaluated":4,
-    "n_adverse":2,
-    "domain_signals":"{\"heat\": {\"signal\": 1.0, \"adverse\": 2, \"evaluated\": 2}, \"land\": {\"signal\": 0.0, \"adverse\": 0, \"evaluated\": 1}, \"water\": {\"signal\": 0.0, \"adverse\": 0, \"evaluated\": 1}}"
+    "n_evaluated":5,
+    "n_adverse":3,
+    "domain_signals":"{\"heat\": {\"signal\": 1.0, \"adverse\": 3, \"evaluated\": 3}, \"land\": {\"signal\": 0.0, \"adverse\": 0, \"evaluated\": 1}, \"water\": {\"signal\": 0.0, \"adverse\": 0, \"evaluated\": 1}}"
   },
   {
     "city":"Tokyo",
