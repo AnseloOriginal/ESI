@@ -28,6 +28,7 @@ from feeders import ALL_FEEDERS
 from habitability import methodology
 from pipeline import Pipeline
 from settings import BASE_DIR, OUTPUT_DIR
+from sources import ACKNOWLEDGEMENT, AI_DISCLOSURE, CATEGORIES, SOURCES
 from thresholds import THRESHOLDS
 
 log = logging.getLogger("api")
@@ -201,6 +202,22 @@ class PressureDetail(BaseModel):
     pressure: PressureOut
     projections: list[ProjectionOut]
     results: list[Trend]
+
+
+class SourceOut(BaseModel):
+    id: str
+    category: str
+    reference: str
+    used_for: str
+    url: str
+    verified: bool
+
+
+class SourcesOut(BaseModel):
+    acknowledgement: str
+    ai_disclosure: str
+    categories: dict[str, str]
+    sources: list[SourceOut]
 
 
 class MethodPart(BaseModel):
@@ -498,6 +515,12 @@ def pressure_detail(city: str):
 def get_methodology():
     """How trends, projections and the pressure score are computed (for the dashboard's method panel)."""
     return methodology()
+
+
+@app.get("/api/sources", response_model=SourcesOut)
+def get_sources():
+    """Datasets, methods, population data and software cited by ESI, plus the acknowledgement and AI disclosure."""
+    return {"acknowledgement": ACKNOWLEDGEMENT, "ai_disclosure": AI_DISCLOSURE, "categories": CATEGORIES, "sources": [x.to_dict() for x in SOURCES]}
 
 
 @app.get("/api/errors", response_model=list[PipelineError])

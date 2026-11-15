@@ -52,18 +52,18 @@ SHERWOOD_HUBER_2010 = Citation(
     authors="Sherwood, S. C., & Huber, M.",
     year=2010,
     title="An adaptability limit to climate change due to heat stress",
-    venue="Proceedings of the National Academy of Sciences (check volume/pages before citing)",
-    url="",
-    verified=False,
+    venue="Proceedings of the National Academy of Sciences, 107(21), 9552-9555",
+    url="https://doi.org/10.1073/pnas.0913352107",
+    verified=True,
 )
 
 VECELLIO_2022 = Citation(
     authors="Vecellio, D. J., Wolf, S. T., Cottle, R. M., & Kenney, W. L.",
     year=2022,
     title="Evaluating the 35 C wet-bulb temperature adaptability threshold for young, healthy subjects (PSU HEAT Project)",
-    venue="Journal of Applied Physiology (check volume/pages before citing)",
-    url="",
-    verified=False,
+    venue="Journal of Applied Physiology, 132(2), 340-345",
+    url="https://doi.org/10.1152/japplphysiol.00738.2021",
+    verified=True,
 )
 
 THRESHOLDS: list[Threshold] = [

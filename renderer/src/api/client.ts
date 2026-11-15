@@ -19,20 +19,38 @@ export interface Projection { city: string; indicator: string; threshold_id: str
 export interface Pressure { city: string; rank: number; score?: number | null; band: string; basis: string; trend_evidence?: number | null; threshold_proximity?: number | null; n_evaluated: number; n_adverse: number }
 export interface Citation { authors: string; year: number; title: string; venue: string; url: string; verified: boolean }
 export interface Threshold { id: string; indicator: string; label: string; value: number; unit: string; meaning: string; caveats: string[]; citation: Citation; active: boolean }
+export interface SourceItem { id: string; category: string; reference: string; used_for: string; url: string; verified: boolean }
+export interface SourcesOut { acknowledgement: string; ai_disclosure: string; categories: Record<string, string>; sources: SourceItem[] }
 export interface Methodology { summary: string; horizon_years: number; confidence_level: number; trend_test: string; projection: string; score_formula: string; parts: { name: string; description: string; weight: number }[]; interpretation: string; caveats: string[] }
 
 export const API_BASE: string = (import.meta.env.VITE_API_URL as string | undefined) ?? 'http://127.0.0.1:8000';
 
 export class ApiError extends Error {}
 
+const STATIC = import.meta.env.VITE_STATIC === '1';
+const slug = (s: string): string => s.trim().toLowerCase().replace(/\s+/g, '-');
+
+/** Static hosting: the same data pre-exported by server/export_static.py (no server needed). */
+function staticFile(path: string, params: Record<string, string>): string {
+  let p = decodeURIComponent(path);
+  if (p === '/api/series') p = `/api/series/${slug(params.city)}__${params.indicator}`;
+  else if (p.startsWith('/api/cities/')) p = `/api/cities/${slug(p.slice('/api/cities/'.length))}`;
+  return `${p.slice(1)}.json`;
+}
+
 async function get<T>(path: string, params: Record<string, string> = {}): Promise<T> {
-  const url = new URL(path, API_BASE);
-  for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
+  let url: URL;
+  if (STATIC) {
+    url = new URL(staticFile(path, params), document.baseURI);
+  } else {
+    url = new URL(path, API_BASE);
+    for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
+  }
   let res: Response;
   try {
     res = await fetch(url);
   } catch {
-    throw new ApiError(`Cannot reach the API at ${API_BASE}. Start it with "py server/api.py" and try again.`);
+    throw new ApiError(STATIC ? 'Cannot load the data files.' : `Cannot reach the API at ${API_BASE}. Start it with "py server/api.py" and try again.`);
   }
   if (!res.ok) throw new ApiError(`The API returned ${res.status} for ${url.pathname}.`);
   return (await res.json()) as T;
@@ -60,5 +78,6 @@ export const api = {
   pressure: () => cached('pressure', () => get<Pressure[]>('/api/pressure')),
   projections: () => cached('projections', () => get<Projection[]>('/api/projections')),
   methodology: () => cached('methodology', () => get<Methodology>('/api/methodology')),
+  sources: () => cached('sources', () => get<SourcesOut>('/api/sources')),
   thresholds: () => cached('thresholds', () => get<Threshold[]>('/api/thresholds')),
 };

@@ -1,6 +1,7 @@
 import { api } from '../api/client';
 import { STATUS_META, esc, formatDate, unitLabel } from '../shared/format';
 import type { Mount } from '../router';
+import { blurb } from '../shared/indicators';
 
 const limitations = [
   'Cities are area-averaged on 1-degree grid boxes, so values snap to the grid and coastal boxes include ocean.',
@@ -12,15 +13,11 @@ const limitations = [
   'Correlation between indicators does not show cause.',
 ];
 
-const software = [
-  'FastAPI, Uvicorn, pandas, NumPy and pymannkendall (server and statistics)',
-  'Vite and TypeScript (web app)',
-  'd3-geo and topojson-client (globe projection)',
-  'world-atlas, derived from Natural Earth (country outlines)',
-];
+const link = (url: string): string =>
+  url ? ` <a href="${esc(url)}" target="_blank" rel="noopener noreferrer" style="overflow-wrap:anywhere">${esc(url)}</a>` : '';
 
 export async function initiativePage(): Promise<Mount> {
-  const [health, indicators] = await Promise.all([api.health(), api.indicators()]);
+  const [health, indicators, sources, thresholds] = await Promise.all([api.health(), api.indicators(), api.sources(), api.thresholds()]);
 
   return (root) => {
     root.innerHTML = `
@@ -48,10 +45,17 @@ export async function initiativePage(): Promise<Mount> {
           <h2>Data sources</h2>
           <div class="table-wrap">
             <table>
-              <thead><tr><th>Indicator</th><th>Unit</th><th>Source</th><th>Cities</th></tr></thead>
-              <tbody>${indicators.map((i) => `<tr><td>${esc(i.label)}</td><td>${esc(unitLabel(i.unit))}</td><td>${esc(i.source)}</td><td>${i.n_cities}</td></tr>`).join('')}</tbody>
+              <thead><tr><th>Indicator</th><th>What is it?</th><th>Unit</th><th>Source</th><th>Cities</th></tr></thead>
+              <tbody>${indicators.map((i) => `<tr><td>${esc(i.label)}</td><td>${esc(blurb(i.indicator))}</td><td>${esc(unitLabel(i.unit))}</td><td>${esc(i.source)}</td><td>${i.n_cities}</td></tr>`).join('')}</tbody>
             </table>
           </div>
+        </section>
+
+        <section class="card">
+          <h2>References</h2>
+          ${Object.entries(sources.categories).map(([key, title]) => `
+            <h3>${esc(title)}</h3>
+            <ul class="bullets">${sources.sources.filter((s) => s.category === key).map((s) => `<li>${esc(s.reference)}${link(s.url)}<br><span class="muted">Used for: ${esc(s.used_for)}</span></li>`).join('')}</ul>`).join('')}
         </section>
 
         <div class="two-col">
@@ -60,10 +64,16 @@ export async function initiativePage(): Promise<Mount> {
             <ul class="bullets">${limitations.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>
           </section>
           <section class="card">
-            <h2>Open-source software and data</h2>
-            <ul class="bullets">${software.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>
+            <h2>Research behind the thresholds</h2>
+            <ul class="bullets">${thresholds.filter((t, i, all) => all.findIndex((x) => x.citation.title === t.citation.title) === i).map((t) => `<li>${esc(t.citation.authors)} (${t.citation.year}). ${esc(t.citation.title)}. ${esc(t.citation.venue)}.${link(t.citation.url)}<br><span class="muted">${esc(t.label)}. ${t.active ? 'Used for the years-to-threshold projection.' : 'Listed for context, not used in any calculation.'}</span></li>`).join('')}</ul>
           </section>
         </div>
+
+        <section class="card prose">
+          <h2>Acknowledgements and AI use</h2>
+          <p>${esc(sources.acknowledgement)}</p>
+          <p>${esc(sources.ai_disclosure)}</p>
+        </section>
       </div>`;
   };
 }

@@ -1,4 +1,5 @@
 import { api, type Pressure, type Projection } from '../api/client';
+import { blurb } from '../shared/indicators';
 import { lineChart } from '../components/charts';
 import { SIGNIFICANT, STATUS_META, cityHash, esc, formatDate, formatPValue, formatPopulation, signed, statusBadge, unitLabel } from '../shared/format';
 import type { Mount } from '../router';
@@ -80,7 +81,7 @@ export async function cityPage(params: string[]): Promise<Mount> {
         <div class="indicator-grid">
           ${trends.map((t) => `
             <article class="card indicator-card">
-              <header><h2>${esc(t.label)}</h2>${statusBadge(t.status)}</header>
+              <header><h2>${esc(t.label)}</h2>${statusBadge(t.status)}</header><p class="muted">${esc(blurb(t.indicator))}</p>
               <p class="summary-line">${esc(sentence(t))}</p>
               <dl class="facts">
                 <div><dt>Trend per decade</dt><dd>${t.status === 'insufficient_data' ? '—' : `${signed(t.trend_per_decade)} ${esc(unitLabel(t.unit))}`}</dd></div>

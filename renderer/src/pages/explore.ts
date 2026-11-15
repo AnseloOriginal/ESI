@@ -1,5 +1,6 @@
 import { api, type CitySummary, type IndicatorInfo, type SeriesOut, type Trend } from '../api/client';
 import { formatDate, formatPValue, esc, signed, unitLabel } from '../shared/format';
+import { blurb } from '../shared/indicators';
 import type { Mount } from '../router';
 
 const CITY_COLORS = ['#386244', '#4d799a', '#bd7343', '#8a6598', '#b04b55', '#667a43', '#397d79', '#a67d25', '#52617e', '#a25d78', '#5c7d9a'];
@@ -62,7 +63,7 @@ export async function explorePage(): Promise<Mount> {
       <form class="card explore-controls" id="explore-form">
         <details class="explore-dock" id="explore-dock" open><summary>Choose indicators and cities <span id="explore-selection-summary">No selection yet</span></summary>
           <div class="explore-picker-body">
-            <fieldset><legend>1. Choose one or more indicators</legend><div class="explore-options indicator-options">${indicators.map((i: IndicatorInfo) => `<label class="explore-option"><input type="checkbox" name="indicator" value="${esc(i.indicator)}"><span><strong>${esc(i.label)}</strong><small>${esc(unitLabel(i.unit))} · ${i.n_cities} cities available</small></span></label>`).join('')}</div></fieldset>
+            <fieldset><legend>1. Choose one or more indicators</legend><div class="explore-options indicator-options">${indicators.map((i: IndicatorInfo) => `<label class="explore-option"><input type="checkbox" name="indicator" value="${esc(i.indicator)}"><span><strong>${esc(i.label)}</strong><small>${esc(unitLabel(i.unit))} · ${i.n_cities} cities available</small><small>${esc(blurb(i.indicator))}</small></span></label>`).join('')}</div></fieldset>
             <fieldset><legend>2. Choose one or more cities</legend><div class="explore-city-tools"><button type="button" class="text-button" data-city-action="all">Select all</button><button type="button" class="text-button" data-city-action="clear">Clear</button></div><div class="explore-options city-options">${cities.map((c: CitySummary) => `<label class="explore-option"><input type="checkbox" name="city" value="${esc(c.name)}"><span><strong>${esc(c.name)}</strong>${c.country ? `<small>${esc(c.country)}</small>` : ''}</span></label>`).join('')}</div></fieldset>
           </div>
         </details>
