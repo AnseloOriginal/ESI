@@ -3,7 +3,7 @@ import { renderDashboard, setupSidebar, setActiveNav } from './pages/dashboard';
 import { startRouter } from './router';
 import { overviewPage } from './pages/overview';
 import { cityPage } from './pages/city';
-import { initiativePage } from './pages/initiative';
+import { initiativePage } from './pages/about';
 import { trendingPage } from './pages/trending';
 import { explorePage } from './pages/explore';
 
@@ -23,7 +23,7 @@ startRouter(
     { section: 'trending', title: 'City Pressure', pattern: /^\/trending$/, load: () => trendingPage() },
     { section: 'explore', title: 'Explore Trends', pattern: /^\/explore$/, load: () => explorePage() },
     { section: 'city', title: 'City view', pattern: /^\/city(?:\/([^/]+))?$/, load: (p) => cityPage(p) },
-    { section: 'initiative', title: 'The initiative', pattern: /^\/initiative$/, load: () => initiativePage() },
+    { section: 'about', title: 'about', pattern: /^\/about$/, load: () => initiativePage() },
   ],
   setActiveNav,
 );

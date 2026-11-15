@@ -23,7 +23,7 @@ export async function initiativePage(): Promise<Mount> {
     root.innerHTML = `
       <div class="page-content stack">
         <header class="page-header">
-          <h1>The initiative</h1>
+          <h1>Mission Statement</h1>
           <p class="lede">The Earth Sustainability Initiative explores one question: could long-term environmental change make some places harder to live in? Built for the NASA Space Apps Challenge 2026, Earth System Trend Detective.</p>
         </header>
 

@@ -63,7 +63,7 @@ export async function overviewPage(): Promise<Mount> {
             <h1>Earth Sustainability Initiative</h1>
             <p class="lede">A city-by-city view of long-term environmental change.</p>
           </div>
-          <p class="overview-period">${esc(period)} <span>·</span> updated ${esc(formatDate(health.generated_at))}</p>
+          <p class="overview-period">${esc(period)} <span>·</span> Updated ${esc(formatDate(health.generated_at))}</p>
         </header>
 
         <section class="globe-card card" aria-label="Global environmental trends">
