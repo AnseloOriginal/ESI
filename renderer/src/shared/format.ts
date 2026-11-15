@@ -2,12 +2,12 @@ import type { Status } from '../api/client';
 import { STATUS_COLORS } from './palette';
 
 export const STATUS_META: Record<Status, { label: string; color: string; hint: string }> = {
-  worsening: { label: 'Worsening', color: STATUS_COLORS.worsening, hint: 'A statistically significant trend in the harmful direction.' },
-  improving: { label: 'Improving', color: STATUS_COLORS.improving, hint: 'A statistically significant trend in the beneficial direction.' },
-  wetter: { label: 'Wetter', color: STATUS_COLORS.wetter, hint: 'Significantly more rainfall. Shown neutrally: it can bring flood pressure or relief.' },
-  drier: { label: 'Drier', color: STATUS_COLORS.drier, hint: 'Significantly less rainfall. Shown neutrally: it can bring drought pressure or relief.' },
-  no_clear_trend: { label: 'No clear trend', color: STATUS_COLORS.no_clear_trend, hint: 'Change is not distinguishable from natural variability. This is not proof of stability.' },
-  insufficient_data: { label: 'Insufficient data', color: STATUS_COLORS.insufficient_data, hint: 'Too short or too incomplete to test.' },
+  worsening: { label: 'Worsening', color: STATUS_COLORS.worsening, hint: 'The indicator has changed significantly in a direction associated with added environmental stress.' },
+  improving: { label: 'Improving', color: STATUS_COLORS.improving, hint: 'The indicator has changed significantly in a direction associated with less environmental stress.' },
+  wetter: { label: 'Wetter', color: STATUS_COLORS.wetter, hint: 'Rainfall has increased. More rain can bring both benefits and challenges.' },
+  drier: { label: 'Drier', color: STATUS_COLORS.drier, hint: 'Rainfall has decreased. Less rain can bring both benefits and challenges.' },
+  no_clear_trend: { label: 'No clear trend', color: STATUS_COLORS.no_clear_trend, hint: 'The data does not show a clear change beyond normal year-to-year variation.' },
+  insufficient_data: { label: 'Insufficient data', color: STATUS_COLORS.insufficient_data, hint: 'The record is too short or incomplete to tell whether a trend is present.' },
 };
 
 export const SIGNIFICANT: Status[] = ['worsening', 'improving', 'wetter', 'drier'];

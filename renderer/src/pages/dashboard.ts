@@ -2,9 +2,9 @@ import { icon } from '../shared/icon';
 
 const navigation = [
   { label: 'Overview', icon: 'grid', href: '#/overview', section: 'overview' },
-  { label: 'City Pressure', icon: 'gauge', href: '#/trending', section: 'trending' },
   { label: 'Explore Trends', icon: 'chart', href: '#/explore', section: 'explore' },
-  { label: 'City view', icon: 'map-pin', href: '#/city', section: 'city' },
+  { label: 'City View', icon: 'map-pin', href: '#/city', section: 'city' },
+  { label: 'City Pressure', icon: 'gauge', href: '#/trending', section: 'trending' },
   { label: 'About', icon: 'info', href: '#/about', section: 'about' },
 ];
 

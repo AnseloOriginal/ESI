@@ -4,13 +4,13 @@ import type { Mount } from '../router';
 import { blurb } from '../shared/indicators';
 
 const limitations = [
-  'Cities are area-averaged on 1-degree grid boxes, so values snap to the grid and coastal boxes include ocean.',
-  'MERRA-2 is a reanalysis, not direct observation. AIRS surface temperature is a single grid cell per city.',
-  'IMERG rainfall is less reliable near coasts and is affected by changes in the satellite constellation.',
-  'Records are about 24 years long. Rainfall varies a lot year to year, so many cities show no clear trend.',
-  'Urban heat island effects are not separated from regional warming.',
-  'Some results are surprising, such as the cooling in New Delhi from MERRA-2 daytime air temperature. Independent AIRS data shows night-time warming there, so we do not read it as a net improvement. A station check is still pending.',
-  'Correlation between indicators does not show cause.',
+  'Each city is represented by a roughly 1-degree grid cell. Coastal cells may include ocean.',
+  'MERRA-2 combines observations with a weather model. AIRS surface temperature comes from one grid cell per city.',
+  'IMERG rainfall estimates are less reliable near coasts and can be affected by changes in the satellite system.',
+  'The record covers about 24 years. Rainfall varies from year to year, so many cities show no clear long-term pattern.',
+  'These data do not separate the urban heat island effect from wider regional warming.',
+  'Some findings point in different directions. New Delhi shows cooling in MERRA-2 daytime air temperature, while independent AIRS data shows warming at night. We do not treat the daytime result alone as an overall improvement; comparing both records with weather station data is still needed.',
+  'A relationship between indicators does not show that one causes another.',
 ];
 
 const link = (url: string): string =>
@@ -24,21 +24,21 @@ export async function initiativePage(): Promise<Mount> {
       <div class="page-content stack">
         <header class="page-header">
           <h1>Mission Statement</h1>
-          <p class="lede">The Earth Sustainability Initiative explores one question: could long-term environmental change make some places harder to live in? Built for the NASA Space Apps Challenge 2026, Earth System Trend Detective.</p>
+          <p class="lede">The Earth Sustainability Initiative explores how long-term environmental changes may affect living conditions in cities. Built for the NASA Space Apps Challenge 2026, Earth System Trend Detective.</p>
         </header>
 
         <section class="card prose">
           <h2>How we test for change</h2>
           <ol class="steps">
             <li><span><strong>Collect.</strong> Monthly NASA records from Giovanni for each city, 2002 onward.</span></li>
-            <li><span><strong>Remove the seasons.</strong> Each month is compared with its own long-term average, then averaged into one value per year. Yearly values avoid the false confidence that month-to-month correlation creates.</span></li>
+            <li><span><strong>Account for seasons.</strong> Each month is compared with its long-term average, then combined into one value per year. This helps keep normal seasonal changes from being mistaken for a long-term trend.</span></li>
             <li><span><strong>Test the trend.</strong> A Mann-Kendall test checks whether the yearly values rise or fall (significance level 0.05). The Sen slope gives the size of the change per decade. At least 15 years of data are required.</span></li>
             <li><span><strong>Label it.</strong> Each result gets one of the statuses below.</span></li>
           </ol>
           <dl class="glossary">
             ${(Object.keys(STATUS_META) as (keyof typeof STATUS_META)[]).map((k) => `<div><dt><span class="dot" style="background:${STATUS_META[k].color}"></span>${STATUS_META[k].label}</dt><dd>${esc(STATUS_META[k].hint)}</dd></div>`).join('')}
           </dl>
-          <p class="muted">Results describe habitability pressure. They are not certain predictions. Data is precomputed and last updated ${esc(formatDate(health.generated_at))}.</p>
+          <p class="muted">These results help compare environmental changes that may affect living conditions. They are not forecasts. Data was last updated ${esc(formatDate(health.generated_at))}.</p>
         </section>
 
         <section class="card">
@@ -60,7 +60,7 @@ export async function initiativePage(): Promise<Mount> {
 
         <div class="two-col">
           <section class="card">
-            <h2>Limitations</h2>
+            <h2>What to keep in mind</h2>
             <ul class="bullets">${limitations.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>
           </section>
           <section class="card">

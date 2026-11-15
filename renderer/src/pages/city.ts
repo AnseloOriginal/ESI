@@ -31,7 +31,7 @@ export async function cityPage(params: string[]): Promise<Mount> {
   const markerName = threshold ? `${threshold.value}°C marker` : 'active temperature marker';
   const estimate = projection?.status === 'approaching' && projection.years_central != null
     ? `about ${Math.round(projection.years_central)} years${projection.years_fast != null && projection.years_slow != null ? ` (${Math.round(projection.years_fast)}–${Math.round(projection.years_slow)} years fast–slow range)` : ''}`
-    : projection?.status === 'distant' ? 'More than 100 years away' : 'No approaching trend identified';
+    : projection?.status === 'distant' ? 'Estimate exceeds 100 years' : 'No significant trend toward the marker';
   const trends = [...detail.results].sort((a, b) => a.label.localeCompare(b.label));
   const updated = trends.find((t) => t.generated_at)?.generated_at;
   const startYears = trends.map((t) => t.start_year).filter((year): year is number => year != null);
@@ -58,18 +58,18 @@ export async function cityPage(params: string[]): Promise<Mount> {
           <div class="city-summary-item"><dt>Indicators</dt><dd>${trends.length}<small>Measured for this city</small></dd></div>
           <div class="city-summary-item"><dt>Last updated</dt><dd>${esc(formatDate(updated))}<small>Most recent data refresh</small></dd></div>
         </dl>
-        <section class="city-pressure-strip" aria-label="City habitability pressure comparison">
-          <div class="city-pressure-heading"><div><p class="eyebrow">SCREENING INDEX</p><h2>Habitability pressure</h2></div>
+        <section class="city-pressure-strip" aria-label="City environmental change summary">
+          <div class="city-pressure-heading"><div><p class="eyebrow">CITY COMPARISON</p><h2>Environmental change summary</h2></div>
             <strong class="city-pressure-score" title="Relative screening index from 0 to 100">${pressure?.score == null ? '—' : pressure.score.toFixed(1)}<small>/100</small></strong>
           </div>
-          <p>Rank ${pressure?.rank ?? '—'} of ${pressureRows.length} cities by overall score. This compares cities relative to one another.</p>
+          <p>Rank ${pressure?.rank ?? '—'} of ${pressureRows.length} cities. Scores compare cities with one another.</p>
           <details class="city-pressure-detail"><summary>See score parts and temperature estimate</summary>
             <div class="city-pressure-parts">
               <span title="Share of measured indicators with a significant worsening, wetter or drier trend.">Trend evidence <strong>${pressure?.trend_evidence == null ? '—' : pressure.trend_evidence.toFixed(0)}/100</strong></span>
-              <span title="Score based on proximity to the active temperature marker.">Threshold proximity <strong>${pressure?.threshold_proximity == null ? '—' : pressure.threshold_proximity.toFixed(0)}/100</strong></span>
+              <span title="Score based on proximity to the active temperature marker.">Marker proximity <strong>${pressure?.threshold_proximity == null ? '—' : pressure.threshold_proximity.toFixed(0)}/100</strong></span>
             </div>
             <p>${projection?.status === 'approaching' ? `If the 2002–2025 trend continues, the ${markerName} estimate is ${estimate}.` : `Temperature marker: ${estimate}.`}</p>
-            <p class="city-pressure-note">The ${markerName} describes a rarely-lived-in condition, not a survival limit. Rainfall shifts are counted neutrally as wetter or drier.</p>
+            <p class="city-pressure-note">The ${markerName} is based on climates that rarely have this annual average temperature today. It is a point of comparison, not a boundary for where people can live. Rainfall is shown as wetter or drier because neither direction is always better or worse.</p>
           </details>
           <a href="#/trending">Compare all cities →</a>
         </section>

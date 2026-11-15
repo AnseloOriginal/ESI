@@ -78,8 +78,8 @@ export async function overviewPage(): Promise<Mount> {
           <aside class="city-detail" id="city-panel" aria-live="polite" aria-label="City details" hidden></aside>
         </section>
 
-        <div class="overview-footnote"><p class="overview-note">Marker color shows the share of measured indicators with a significant worsening trend. Rainfall is shown neutrally; wetter or drier is not always better or worse.</p>
-          <a href="#/trending" title="Compare cities using the habitability pressure screening index">Explore habitability pressure rankings →</a>
+        <div class="overview-footnote"><p class="overview-note">Warmer marker colors mean more indicators show a significant worsening trend. Rainfall is treated separately because a change alone does not show whether conditions are better or worse.</p>
+          <a href="#/trending" title="Compare long-term city trends and temperature marker estimates">Explore city comparisons →</a>
         </div>
       </div>`;
 

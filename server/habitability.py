@@ -189,56 +189,57 @@ def score_cities(results: pd.DataFrame, projections: pd.DataFrame, horizon: int 
 def methodology() -> dict:
     return {
         "summary": (
-            "For each city we test every indicator for a statistically significant trend, project the "
-            "temperature trend forward to a published limit, and combine both into a relative pressure score. "
-            "The score is a screening tool for comparing cities, not a forecast or a measure of how livable a city is."
+            "For each city we test the indicators for a statistically significant trend, estimate how the "
+            "temperature trend compares with a research-based marker, and combine these results into a score. "
+            "The score helps compare cities; it is not a forecast or a measure of how livable a city is."
         ),
         "horizon_years": HORIZON_YEARS,
         "confidence_level": CONFIDENCE,
         "trend_test": (
-            "Monthly values are converted to seasonally adjusted annual values (each calendar month's long-term mean "
-            "removed; years with fewer than 9 valid months dropped). A Mann-Kendall test checks for a monotonic trend "
-            "and Sen's slope measures it. At least 15 usable years are required. A trend counts as significant at p < 0.05."
+            "We adjust monthly values for the usual seasonal cycle, then compare annual values. A statistical test "
+            "checks whether they show a consistent upward or downward pattern, and the Sen slope estimates the size "
+            "of the change. At least 15 years are needed; trends are marked significant when p < 0.05."
         ),
         "projection": (
-            "Sen's slope and its 95% interval are applied to the fitted level in the last data year. Years to threshold "
-            "= distance to the threshold / slope. The central estimate uses the median slope; the fast case uses the "
-            "steepest slope in the interval; the slow case uses the gentlest (none if the interval allows no approach). "
-            f"Thresholds further than {HORIZON_YEARS} years away are called distant. Projections assume the "
-            "2002-2025 straight-line trend simply continues."
+            "We extend the measured temperature trend from the last recorded year toward the 29 C marker. The central "
+            "estimate uses the middle of the trend's 95% uncertainty range; the faster and slower estimates use its "
+            "steepest and gentlest values. If the range does not show an approach, a range is not reported. These are "
+            f"straight-line estimates that assume the 2002-2025 trend continues; they are not forecasts. Estimates "
+            f"beyond {HORIZON_YEARS} years are shown as more than {HORIZON_YEARS} years away."
         ),
-        "score_formula": f"score = {WEIGHT_TREND} x A (trend evidence) + {WEIGHT_THRESHOLD} x B (threshold proximity); weights are rescaled if a part is unavailable.",
+        "score_formula": "The combined score gives equal weight to trend evidence and temperature marker proximity. If one part is unavailable, the other is used.",
         "parts": [
             {
                 "name": "A. Trend evidence (0-100)",
                 "description": (
-                    "Indicators are grouped into hazard domains (heat, water, land). For each domain, the share of its "
-                    "evaluated indicators showing a significant worsening, wetter or drier trend; the domain shares are "
-                    "averaged and scaled to 100. Rainfall shifts in either direction count, since drought and flooding are both hazards."
+                    "Indicators are grouped into heat, water and land. Each group score reflects the share of "
+                    "indicators with a significant change: warming or declining greenness, and wetter or drier rainfall. "
+                    "Rainfall changes in either direction count because unusually wet and dry conditions can both bring "
+                    "challenges. The three group scores are averaged on a 0–100 scale."
                 ),
                 "weight": WEIGHT_TREND,
             },
             {
-                "name": "B. Threshold proximity (0-100)",
+                "name": "B. Temperature marker proximity (0-100)",
                 "description": (
-                    f"For each published threshold: 100 if already exceeded; 100 x (1 - years to threshold / {HORIZON_YEARS}) "
-                    "if a significant trend is approaching it; 0 otherwise (distant, flat, moving away, or not significant). "
-                    "Averaged over thresholds. Currently one active threshold: mean annual temperature 29 C."
+                    f"Cities already above the marker receive 100. Otherwise, a significant warming trend scores "
+                    f"higher when it is estimated to reach the 29 C annual temperature marker sooner, up to "
+                    f"{HORIZON_YEARS} years away. Distant or non-approaching trends receive zero."
                 ),
                 "weight": WEIGHT_THRESHOLD,
             },
         ],
         "bands": [{"label": b, "min_score": lo, "max_score": hi} for b, lo, hi in BANDS],
         "interpretation": (
-            "Higher means more of the evidence points toward pressure on the human climate niche. Cities that are "
-            "already hot score higher on part B because they are closer to the limit, even if they warm slowly."
+            "Higher scores mean more indicators show significant change and/or the city's temperature is closer to "
+            "the research marker. This is a relative comparison across cities, not a measure of livability."
         ),
         "caveats": [
-            "A relative index built from a few indicators; weights are a stated choice, not fitted to outcomes.",
-            "Part A counts a significant adverse trend the same whatever its size, so with few indicators it can saturate; part B is what separates cities that are close to a limit.",
-            "Projections are straight-line extensions of 23-24 years of data, not climate forecasts.",
-            "Coarse grids, ocean in coastal boxes, reanalysis temperature and short records limit precision.",
-            "Wet-bulb (humid heat) limits are listed but not used: they need humidity and daily or hourly extremes.",
+            "The index uses a small set of indicators. We chose the score weights; they have not been calibrated against observed outcomes.",
+            "Each significant trend counts equally, whatever its size. With only a few indicators, the trend score can reach its maximum; the temperature marker score helps distinguish cities.",
+            "Estimates extend 23–24 years of data in a straight line. They are not climate forecasts.",
+            "Grid cells are coarse, coastal cells may include ocean, and records are relatively short, so results are approximate.",
+            "Humid-heat markers are listed for context but are not used because these data do not include humidity or daily and hourly temperature peaks.",
             "Indicators without a published threshold (rainfall) contribute only through part A.",
         ],
     }

@@ -70,19 +70,19 @@ THRESHOLDS: list[Threshold] = [
     Threshold(
         id="human_niche_mat_29c",
         indicator="air_temp_2m",
-        label="Human climate niche limit: mean annual temperature 29 C",
+        label="Mean annual temperature marker: 29 C",
         value=29.0,
         unit="degC",
         comparison="above",
         meaning=(
             "Mean annual temperatures above 29 C are found today on only about 0.8% of Earth's land, "
             "mostly in the Sahara. The study projects that, without migration, about one third of the world's "
-            "people could face such temperatures in a business-as-usual warming scenario. We use it as a marker "
-            "of conditions humans have almost never lived in."
+            "people could live in areas with similar temperatures in a business-as-usual warming scenario. We use "
+            "29 C as a research-based comparison point for climates rarely experienced by people today."
         ),
         caveats=(
-            "A marker of conditions people rarely live in today, not a physiological survival limit; adaptation, "
-            "cooling technology and migration change what is tolerable.",
+            "This marker describes where people live today; adaptation, cooling technology and migration affect "
+            "how people manage different conditions.",
             "Compared against MERRA-2 2 m air temperature (a reanalysis) averaged over a roughly 1-degree box, "
             "which can differ from the datasets in the paper and includes ocean for coastal cities.",
             "Annual means only: says nothing about heat extremes or humidity.",
@@ -93,30 +93,30 @@ THRESHOLDS: list[Threshold] = [
     Threshold(
         id="wetbulb_35c",
         indicator="wet_bulb_temp_max",
-        label="Theoretical wet-bulb limit: 35 C",
+        label="Theoretical wet-bulb marker: 35 C",
         value=35.0,
         unit="degC",
         comparison="above",
-        meaning="A wet-bulb temperature of 35 C has long been proposed as the theoretical limit of human heat adaptability.",
-        caveats=("Theoretical; later lab work found people reach heat-stress limits at lower wet-bulb values.",),
+        meaning="A wet-bulb temperature of 35 C has been proposed as an upper marker for human heat adaptation.",
+        caveats=("This is theoretical; later lab studies found heat stress at lower wet-bulb temperatures.",),
         citation=SHERWOOD_HUBER_2010,
         active=False,
-        inactive_reason="Needs humidity plus daily or hourly temperature peaks. Monthly averages cannot show wet-bulb extremes.",
+        inactive_reason="This measure needs humidity and daily or hourly temperature peaks, which monthly averages do not provide.",
     ),
     Threshold(
         id="wetbulb_31c_humid",
         indicator="wet_bulb_temp_max",
-        label="Measured wet-bulb limit, warm-humid conditions: about 31 C",
+        label="Observed wet-bulb heat-stress marker, warm and humid conditions: about 31 C",
         value=31.0,
         unit="degC",
         comparison="above",
         meaning=(
-            "Lab experiments on young, healthy adults at modest activity found heat stress becoming uncompensable "
-            "at wet-bulb temperatures of about 30-31 C in warm-humid conditions (25-28 C in hot-dry conditions)."
+            "Lab studies found that young, healthy adults at modest activity began to struggle to regulate body "
+            "temperature at wet-bulb temperatures of about 30-31 C in warm, humid conditions (25-28 C in hot, dry conditions)."
         ),
-        caveats=("Young, healthy adults only; limits are expected to be lower for older people, children and outdoor workers.",),
+        caveats=("The study involved young, healthy adults; older people, children and outdoor workers may be affected at lower temperatures.",),
         citation=VECELLIO_2022,
         active=False,
-        inactive_reason="Needs humidity plus daily or hourly temperature peaks. Monthly averages cannot show wet-bulb extremes.",
+        inactive_reason="This measure needs humidity and daily or hourly temperature peaks, which monthly averages do not provide.",
     ),
 ]
